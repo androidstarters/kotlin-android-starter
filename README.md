@@ -1,0 +1,102 @@
+# AndroidMvpStarter [![Build Status](https://travis-ci.org/ravidsrk/android-mvp-starter.svg?branch=master)](https://travis-ci.org/ravidsrk/android-mvp-starter)
+
+An MVP Boilerplate to save me having to create the same project over from scratch every time! :)
+
+## This project uses:
+
+- Support libraries: AppCompat, Design.
+- [RxJava](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [Retrofit 2](http://square.github.io/retrofit/)
+- [Dagger 2](http://google.github.io/dagger/)
+- [Butterknife](https://github.com/JakeWharton/butterknife)
+- [Timber](https://github.com/JakeWharton/timber)
+- [Glide 3](https://github.com/bumptech/glide)
+- [Espresso](https://google.github.io/android-testing-support-library/) for UI tests
+- [Robolectric](http://robolectric.org/) for framework specific unit tests
+- [Mockito](http://mockito.org/)
+- [Checkstyle](http://checkstyle.sourceforge.net/), [PMD](https://pmd.github.io/) and [Findbugs](http://findbugs.sourceforge.net/) for code analysis
+
+## Requirements
+
+ - [Android SDK](http://developer.android.com/sdk/index.html).
+ - Android [4.3 (API 18) ](http://developer.android.com/tools/revisions/platforms.html#4.3).
+ - Android SDK Tools
+ - Android SDK Build tools 23.0.2
+ - Android Support Repository
+ - Android Support libraries
+
+## Building
+
+To build, install and run a debug version, run this from the root of the project:
+```sh
+./gradlew app:assembleDebug
+```
+    
+## Testing
+
+To run **unit** tests on your machine:
+
+```sh
+./gradlew test
+```
+
+To run **instrumentation** tests on connected devices:
+
+```sh
+./gradlew connectedAndroidTest
+```
+
+## Code Analysis tools
+
+The following code analysis tools are set up on this project:
+
+* [PMD](https://pmd.github.io/)
+
+```sh
+./gradlew pmd
+```
+
+* [Findbugs](http://findbugs.sourceforge.net/)
+
+```sh
+./gradlew findbugs
+```
+
+* [Checkstyle](http://checkstyle.sourceforge.net/)
+
+```sh
+./gradlew checkstyle
+```
+
+## The check task
+
+To ensure that your code is valid and stable use check:
+
+```sh
+./gradlew check
+```
+
+## License
+```
+MIT License
+
+Copyright (c) 2016 Ravindra Kumar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
