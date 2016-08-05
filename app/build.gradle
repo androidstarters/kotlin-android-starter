@@ -74,7 +74,7 @@ retrolambda {
 }
 
 dependencies {
-    final PLAY_SERVICES_VERSION = '9.2.1'
+    final PLAY_SERVICES_VERSION = '9.4.0'
     final SUPPORT_LIBRARY_VERSION = '24.1.1'
     final RETROFIT_VERSION = '2.1.0'
     final OKHTTP_VERSION = '3.4.1'
