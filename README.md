@@ -17,14 +17,13 @@ An MVP Boilerplate to save me having to create the same project over from scratc
 - [Mockito](http://mockito.org/)
 - [Checkstyle](http://checkstyle.sourceforge.net/), [PMD](https://pmd.github.io/) and [Findbugs](http://findbugs.sourceforge.net/) for code analysis
 
-## Requirements
-
- - [Android SDK](http://developer.android.com/sdk/index.html).
- - Android [4.3 (API 18) ](http://developer.android.com/tools/revisions/platforms.html#4.3).
- - Android SDK Tools
- - Android SDK Build tools 23.0.2
- - Android Support Repository
- - Android Support libraries
+## Create new project using yeoman [generator-android-mvp-starter](https://github.com/ravidsrk/generator-android-mvp-starter)
+```bash
+npm install -g yo
+npm install -g generator-android-mvp-starter
+mkdir NewApp && cd $_
+yo android-mvp-starter
+```
 
 ## Building
 
