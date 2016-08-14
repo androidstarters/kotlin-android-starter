@@ -19,7 +19,7 @@ import timber.log.Timber;
  */
 public class MvpStarterServiceFactory {
 
-    public static MvpStarterService makeSecretsService() {
+    public static MvpStarterService makeStarterService() {
         return makeMvpStarterService(makeGson());
     }
 
