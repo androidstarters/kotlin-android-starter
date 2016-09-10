@@ -14,6 +14,10 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
+findbugs {
+  toolVersion = "3.0.0"
+}
+
 dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:7.1'
 }
