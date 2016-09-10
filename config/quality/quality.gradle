@@ -15,11 +15,14 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 findbugs {
-  toolVersion = "3.0.0"
+  toolVersion = '+'
 }
 
 dependencies {
     checkstyle 'com.puppycrawl.tools:checkstyle:7.1'
+    findbugs 'com.google.code.findbugs:findbugs:3.0.+'
+    findbugs 'com.google.code.findbugs:bcel-findbugs:6.0'
+    findbugs 'com.google.code.findbugs:jFormatString:3.0.+'
 }
 
 def qualityConfigDir = "$project.rootDir/config/quality";
