@@ -2,8 +2,6 @@ apply plugin: 'com.android.application'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.fernandocejas.frodo'
-apply plugin: 'com.github.triplet.play'
 //apply plugin: 'io.fabric'
 
 android {
