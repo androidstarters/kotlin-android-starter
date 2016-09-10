@@ -8,7 +8,7 @@ apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     dexOptions {
         maxProcessCount 4
