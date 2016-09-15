@@ -73,15 +73,15 @@ retrolambda {
 
 dependencies {
     final PLAY_SERVICES_VERSION = '9.4.0'
-    final SUPPORT_LIBRARY_VERSION = '24.2.0'
+    final SUPPORT_LIBRARY_VERSION = '24.2.1'
     final RETROFIT_VERSION = '2.1.0'
     final OKHTTP_VERSION = '3.4.1'
-    final DAGGER_VERSION = '2.5'
+    final DAGGER_VERSION = '2.7'
     final DEXMAKER_VERSION = '1.4'
     final HAMCREST_VERSION = '1.3'
     final ESPRESSO_VERSION = '2.2.2'
     final RUNNER_VERSION = '0.5'
-    final BUTTERKNIFE_VERSION = '8.3.0'
+    final BUTTERKNIFE_VERSION = '8.4.0'
 
     def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     def jUnit = "junit:junit:4.12"
