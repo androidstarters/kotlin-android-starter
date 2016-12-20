@@ -21,7 +21,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
     private CompositeSubscription mSubscriptions;
 
     @Inject
-    public DetailPresenter(DataManager dataManager) {
+    DetailPresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }
 
@@ -38,7 +38,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
         mSubscriptions = null;
     }
 
-    public void getPokemon(String name) {
+    void getPokemon(String name) {
         checkViewAttached();
         getMvpView().showProgress(true);
         mSubscriptions.add(mDataManager.getPokemon(name)
