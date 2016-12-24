@@ -53,7 +53,7 @@ public class DetailActivityTest {
 
     @Test
     public void checkErrorViewDisplays() {
-        stubDataManagerGetPokemon(Single.<Pokemon>error(new RuntimeException()));
+        stubDataManagerGetPokemon(Single.error(new RuntimeException()));
         Pokemon pokemon = TestDataFactory.makePokemon("id");
         main.launchActivity(
                 DetailActivity.getStartIntent(InstrumentationRegistry.getContext(), pokemon.name));
