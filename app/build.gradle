@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'jacoco'
 //apply plugin: 'io.fabric'
 
 android {
@@ -44,11 +45,23 @@ android {
 
     lintOptions {
         warning 'InvalidPackage'
-        textOutput 'stdout'
         fatal 'UnusedResources'
         warning 'ResourceType'
-        abortOnError false
+        textOutput "stdout"
         textReport true
+        checkAllWarnings true
+        warningsAsErrors true
+        showAll true
+        explainIssues true
+        abortOnError false
+        disable "UnusedResources",              // Unused will be removed on release
+                "IconExpectedSize",             // Using the material icons provided from Google
+                "GoogleAppIndexingApiWarning",  // We might want to index our app later
+                "InvalidPackage",               // Butterknife, Okio and Realm
+                "ResourceType",                 // Annotation binding
+                "GradleDependency",
+                "NewerVersionAvailable",
+                "PropertyEscape" // CI issue with sdk.dir in local.properties
     }
 
     packagingOptions {
@@ -62,6 +75,17 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                }
+            }
+        }
     }
 }
 
@@ -127,15 +151,16 @@ dependencies {
     androidTestCompile jUnit
     androidTestCompile mockito
     androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
+    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION"
     androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION") {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
-    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
-    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
     androidTestCompile "org.mockito:mockito-android:$MOCKITO_VERSION"
 
     // Unit tests dependencies
@@ -145,6 +170,12 @@ dependencies {
     testCompile "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
     testCompile "org.robolectric:robolectric:3.2.2"
+    testCompile "org.easymock:easymock:3.4"
+    testCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    testCompile "com.squareup.assertj:assertj-android:1.1.1"        // AssertJ
+    testCompile "org.powermock:powermock-core:1.6.6"                // PowerMock
+    testCompile "org.powermock:powermock-module-junit4:1.6.6"
+    testCompile "org.powermock:powermock-api-easymock:1.6.6"        // PowerMock + EasyMock extension
 
     // APT dependencies
     annotationProcessor "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
