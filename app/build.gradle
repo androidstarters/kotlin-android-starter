@@ -1,5 +1,3 @@
-import junit.framework.Test
-
 apply plugin: 'com.android.application'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'me.tatarka.retrolambda'
@@ -56,14 +54,14 @@ android {
         showAll true
         explainIssues true
         abortOnError false
-        disable "UnusedResources",              // Unused will be removed on release
-                "IconExpectedSize",             // Using the material icons provided from Google
-                "GoogleAppIndexingApiWarning",  // We might want to index our app later
-                "InvalidPackage",               // Butterknife, Okio and Realm
-                "ResourceType",                 // Annotation binding
-                "GradleDependency",
-                "NewerVersionAvailable",
-                "PropertyEscape" // CI issue with sdk.dir in local.properties
+        disable "UnusedResources"              // Unused will be removed on release
+        disable "IconExpectedSize"             // Using the material icons provided from Google
+        disable "GoogleAppIndexingApiWarning"  // We might want to index our app later
+        disable "InvalidPackage"               // Butterknife, Okio and Realm
+        disable "ResourceType"                 // Annotation binding
+        disable "GradleDependency"
+        disable "NewerVersionAvailable"
+        disable "PropertyEscape"                // CI issue with sdk.dir in local.properties
     }
 
     packagingOptions {
@@ -91,6 +89,13 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.squareup.okio:okio:1.11.0'
+        force "com.squareup.okhttp3:okhttp:3.5.0"
+    }
+}
+
 retrolambda {
     jvmArgs '-noverify'
     incremental true
@@ -105,8 +110,13 @@ dependencies {
     final HAMCREST_VERSION = '1.3'
     final ESPRESSO_VERSION = '2.2.2'
     final RUNNER_VERSION = '0.5'
-    final BUTTERKNIFE_VERSION = '8.4.0'
-    final MOCKITO_VERSION = '2.6.3'
+    final BUTTERKNIFE_VERSION = '8.5.1'
+    final MOCKITO_VERSION = '2.6.8'
+    final RESTMOCK_VERSION = '0.1.4'
+    final ROBOELECTRIC_VERSION = '3.2.2'
+    final LEAKCANARY_VERSION = '1.5'
+    final SQLBRITE_VERSION = '1.1.1'
+    final TIMBER_VERSION = '4.5.1'
 
     def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     def jUnit = "junit:junit:4.12"
@@ -120,12 +130,12 @@ dependencies {
     compile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
 
     // Google Play Services
-    compile "com.google.android.gms:play-services-analytics:$PLAY_SERVICES_VERSION"
     compile "com.google.android.gms:play-services-maps:$PLAY_SERVICES_VERSION"
+    compile "com.google.firebase:firebase-core:$PLAY_SERVICES_VERSION"
+    compile "com.google.firebase:firebase-crash:$PLAY_SERVICES_VERSION"
+    compile "com.google.firebase:firebase-messaging:$PLAY_SERVICES_VERSION"
 
-    compile ("com.squareup.sqlbrite:sqlbrite:1.1.1") {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
+    compile "com.squareup.sqlbrite:sqlbrite:$SQLBRITE_VERSION"
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
@@ -137,33 +147,33 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.7'
+    compile "io.reactivex:rxandroid:1.2.1"
+    compile "io.reactivex:rxjava:1.2.5"
     compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
-    compile 'com.jakewharton.timber:timber:4.1.0'
-    compile 'com.facebook.stetho:stetho-okhttp3:1.3.1'
+    compile "com.jakewharton.timber:timber:$TIMBER_VERSION"
+    compile "com.facebook.stetho:stetho-okhttp3:1.4.2"
     compile "com.google.dagger:dagger:$DAGGER_VERSION"
     provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$LEAKCANARY_VERSION"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$LEAKCANARY_VERSION"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$LEAKCANARY_VERSION"
 
     // Instrumentation test dependencies
     androidTestCompile jUnit
     androidTestCompile mockito
     androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
-    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
-    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$ESPRESSO_VERSION"
     androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION") {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
+    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
     androidTestCompile "org.mockito:mockito-android:$MOCKITO_VERSION"
+    androidTestCompile "com.github.andrzejchm.RESTMock:android:$RESTMOCK_VERSION"
 
     // Unit tests dependencies
     testCompile jUnit
@@ -171,9 +181,10 @@ dependencies {
     testCompile "org.hamcrest:hamcrest-core:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
-    testCompile "org.robolectric:robolectric:3.2.2"
-    testCompile "org.easymock:easymock:3.4"
+    testCompile "org.robolectric:robolectric:$ROBOELECTRIC_VERSION"
     testCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    testCompile "com.github.andrzejchm.RESTMock:android:$RESTMOCK_VERSION"
+    testCompile "org.easymock:easymock:3.4"
     testCompile "com.squareup.assertj:assertj-android:1.1.1"        // AssertJ
     testCompile "org.powermock:powermock-core:1.6.6"                // PowerMock
     testCompile "org.powermock:powermock-module-junit4:1.6.6"
