@@ -15,13 +15,13 @@ import com.bumptech.glide.Glide;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
 import in.mvpstarter.sample.ui.base.BaseActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.widget.StatisticView;
+import timber.log.Timber;
 
 public class DetailActivity extends BaseActivity implements DetailMvpView, ErrorView.ErrorListener {
 
@@ -55,8 +55,6 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
-        setContentView(R.layout.activity_detail);
-        ButterKnife.bind(this);
         mDetailPresenter.attachView(this);
 
         mPokemonName = getIntent().getStringExtra(EXTRA_POKEMON_NAME);
@@ -75,9 +73,8 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDetailPresenter.detachView();
+    public int getLayout() {
+        return R.layout.activity_detail;
     }
 
     @Override
@@ -104,13 +101,20 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     }
 
     @Override
-    public void showError() {
+    public void showError(Throwable error) {
         mPokemonLayout.setVisibility(View.GONE);
         mErrorView.setVisibility(View.VISIBLE);
+        Timber.e(error, "There was a problem retrieving the pokemon...");
     }
 
     @Override
     public void onReloadData() {
         mDetailPresenter.getPokemon(mPokemonName);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDetailPresenter.detachView();
     }
 }

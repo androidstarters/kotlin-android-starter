@@ -54,8 +54,7 @@
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:paddingBottom="?attr/actionBarSize"
+        android:layout_gravity="center"
         android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>
