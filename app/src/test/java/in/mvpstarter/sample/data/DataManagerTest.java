@@ -30,7 +30,7 @@ public class DataManagerTest {
     public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
     @Mock
     MvpStarterService mMockMvpStarterService;
-    DataManager mDataManager;
+    private DataManager mDataManager;
 
     @Before
     public void setUp() {

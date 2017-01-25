@@ -13,11 +13,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import in.mvpstarter.sample.R;
 import in.mvpstarter.sample.ui.base.BaseActivity;
 import in.mvpstarter.sample.ui.common.ErrorView;
 import in.mvpstarter.sample.ui.detail.DetailActivity;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements MainMvpView, PokemonAdapter.ClickListener,
         ErrorView.ErrorListener {
@@ -44,21 +44,13 @@ public class MainActivity extends BaseActivity implements MainMvpView, PokemonAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         mMainPresenter.attachView(this);
 
         setSupportActionBar(mToolbar);
 
         mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.primary);
         mSwipeRefreshLayout.setColorSchemeResources(R.color.white);
-        mSwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        mMainPresenter.getPokemon(POKEMON_COUNT);
-                    }
-                });
+        mSwipeRefreshLayout.setOnRefreshListener(() -> mMainPresenter.getPokemon(POKEMON_COUNT));
 
         mPokemonAdapter.setClickListener(this);
         mPokemonRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +59,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, PokemonAd
         mErrorView.setErrorListener(this);
 
         mMainPresenter.getPokemon(POKEMON_COUNT);
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -105,10 +102,11 @@ public class MainActivity extends BaseActivity implements MainMvpView, PokemonAd
     }
 
     @Override
-    public void showError() {
+    public void showError(Throwable error) {
         mPokemonRecycler.setVisibility(View.GONE);
         mSwipeRefreshLayout.setVisibility(View.GONE);
         mErrorView.setVisibility(View.VISIBLE);
+        Timber.e(error, "There was an error retrieving the pokemon");
     }
 
     @Override
