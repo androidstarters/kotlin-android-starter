@@ -195,6 +195,8 @@ dependencies {
     annotationProcessor daggerCompiler
     testAnnotationProcessor daggerCompiler
     androidTestAnnotationProcessor daggerCompiler
+
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.0'
 }
 
 // Log out test results to console
