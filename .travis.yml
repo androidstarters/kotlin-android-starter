@@ -6,7 +6,8 @@ jdk: oraclejdk8
 android:
   components:
     - platform-tools
-    - tools
+    - tools # to get the new `repository-11.xml`
+    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - build-tools-25.0.2
     - android-25
     - extra-android-m2repository
@@ -17,4 +18,4 @@ android:
 before_script:
     - chmod +x gradlew
     
-script: "./gradlew build testDebug -PdisablePreDex"
+script: "./gradlew testDebug -PdisablePreDex"
