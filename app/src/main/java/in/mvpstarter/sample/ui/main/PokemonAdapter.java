@@ -60,18 +60,15 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     class PokemonViewHolder extends RecyclerView.ViewHolder {
 
-        public String mPokemon;
+        String mPokemon;
         @BindView(R.id.text_name)
         TextView nameText;
 
-        public PokemonViewHolder(View itemView) {
+        PokemonViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
-                }
+            itemView.setOnClickListener(v -> {
+                if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
             });
         }
     }

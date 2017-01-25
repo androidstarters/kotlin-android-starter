@@ -10,6 +10,6 @@ public interface MainMvpView extends MvpView {
 
     void showProgress(boolean show);
 
-    void showError();
+    void showError(Throwable error);
 
 }

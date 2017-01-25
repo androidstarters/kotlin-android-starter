@@ -2,6 +2,8 @@ package in.mvpstarter.sample.ui.base;
 
 import rx.Observable;
 import rx.Single;
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
@@ -11,6 +13,7 @@ import rx.Single;
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
     private T mMvpView;
+    private final CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     @Override
     public void attachView(T mvpView) {
@@ -20,6 +23,9 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     @Override
     public void detachView() {
         mMvpView = null;
+        if(!compositeSubscription.isUnsubscribed()) {
+            compositeSubscription.clear();
+        }
     }
 
     public boolean isViewAttached() {
@@ -34,8 +40,12 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
         if (!isViewAttached()) throw new MvpViewNotAttachedException();
     }
 
-    public static class MvpViewNotAttachedException extends RuntimeException {
-        public MvpViewNotAttachedException() {
+    public void addSubscription(Subscription subs) {
+        compositeSubscription.add(subs);
+    }
+
+    private static class MvpViewNotAttachedException extends RuntimeException {
+        MvpViewNotAttachedException() {
             super("Please call Presenter.attachView(MvpView) before" +
                     " requesting data to the Presenter");
         }

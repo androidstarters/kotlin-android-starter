@@ -1,3 +1,5 @@
+import junit.framework.Test
+
 apply plugin: 'com.android.application'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'me.tatarka.retrolambda'

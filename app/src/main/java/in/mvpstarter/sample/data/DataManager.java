@@ -19,7 +19,7 @@ public class DataManager {
     private final MvpStarterService mMvpStarterService;
 
     @Inject
-    public DataManager(MvpStarterService mvpStarterService) {
+    DataManager(MvpStarterService mvpStarterService) {
         mMvpStarterService = mvpStarterService;
     }
 
