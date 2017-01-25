@@ -13,7 +13,7 @@ import rx.subscriptions.CompositeSubscription;
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
     private T mMvpView;
-    private final CompositeSubscription compositeSubscription = new CompositeSubscription();
+    private final CompositeSubscription mCompositeSubscription = new CompositeSubscription();
 
     @Override
     public void attachView(T mvpView) {
@@ -23,8 +23,8 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     @Override
     public void detachView() {
         mMvpView = null;
-        if(!compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.clear();
+        if (!mCompositeSubscription.isUnsubscribed()) {
+            mCompositeSubscription.clear();
         }
     }
 
@@ -41,7 +41,7 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     }
 
     public void addSubscription(Subscription subs) {
-        compositeSubscription.add(subs);
+        mCompositeSubscription.add(subs);
     }
 
     private static class MvpViewNotAttachedException extends RuntimeException {
