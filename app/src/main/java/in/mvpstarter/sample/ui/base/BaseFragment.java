@@ -3,11 +3,14 @@ package in.mvpstarter.sample.ui.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.LongSparseArray;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+import butterknife.ButterKnife;
 import in.mvpstarter.sample.MvpStarterApplication;
 import in.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 import in.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
@@ -23,7 +26,8 @@ import timber.log.Timber;
 public abstract class BaseFragment extends Fragment {
 
     private static final String KEY_FRAGMENT_ID = "KEY_FRAGMENT_ID";
-    private static final Map<Long, ConfigPersistentComponent> sComponentsMap = new HashMap<>();
+    private static final LongSparseArray<ConfigPersistentComponent> sComponentsArray =
+            new LongSparseArray<>();
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
 
     private FragmentComponent mFragmentComponent;
@@ -38,19 +42,29 @@ public abstract class BaseFragment extends Fragment {
         mFragmentId = savedInstanceState != null ?
                 savedInstanceState.getLong(KEY_FRAGMENT_ID) : NEXT_ID.getAndIncrement();
         ConfigPersistentComponent configPersistentComponent;
-        if (!sComponentsMap.containsKey(mFragmentId)) {
+        if (sComponentsArray.get(mFragmentId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mFragmentId);
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .applicationComponent(MvpStarterApplication.get(
                             getActivity()).getComponent())
                     .build();
-            sComponentsMap.put(mFragmentId, configPersistentComponent);
+            sComponentsArray.put(mFragmentId, configPersistentComponent);
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", mFragmentId);
-            configPersistentComponent = sComponentsMap.get(mFragmentId);
+            configPersistentComponent = sComponentsArray.get(mFragmentId);
         }
         mFragmentComponent = configPersistentComponent.fragmentComponent(new FragmentModule(this));
     }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(getLayout(), container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    public abstract int getLayout();
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -62,7 +76,7 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         if (!getActivity().isChangingConfigurations()) {
             Timber.i("Clearing ConfigPersistentComponent id=%d", mFragmentId);
-            sComponentsMap.remove(mFragmentId);
+            sComponentsArray.remove(mFragmentId);
         }
         super.onDestroy();
     }

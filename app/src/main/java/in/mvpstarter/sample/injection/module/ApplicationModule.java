@@ -13,7 +13,7 @@ import in.mvpstarter.sample.injection.ApplicationContext;
 
 @Module
 public class ApplicationModule {
-    protected final Application mApplication;
+    private final Application mApplication;
 
     public ApplicationModule(Application application) {
         mApplication = application;
