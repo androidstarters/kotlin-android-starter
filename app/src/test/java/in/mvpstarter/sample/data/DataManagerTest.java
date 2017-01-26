@@ -26,7 +26,6 @@ import static org.mockito.Mockito.when;
 public class DataManagerTest {
 
     @Rule
-    // Must be added to every test class that targets app code that uses RxJava
     public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
     @Mock
     MvpStarterService mMockMvpStarterService;
@@ -65,5 +64,4 @@ public class DataManagerTest {
         testSubscriber.assertCompleted();
         testSubscriber.assertValue(pokemon);
     }
-
 }

@@ -32,7 +32,7 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    static MvpStarterService provideMvpBoilerplateService() {
+    static MvpStarterService provideMvpStarterService() {
         return MvpStarterServiceFactory.makeStarterService();
     }
 }
