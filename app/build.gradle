@@ -149,6 +149,10 @@ dependencies {
 
     compile "io.reactivex:rxandroid:1.2.1"
     compile "io.reactivex:rxjava:1.2.5"
+
+    //RxPermission for easy runtime permission management
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
+
     compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
     compile "com.jakewharton.timber:timber:$TIMBER_VERSION"
     compile "com.facebook.stetho:stetho-okhttp3:1.4.2"
