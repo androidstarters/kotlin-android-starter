@@ -44,6 +44,9 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
 
                     @Override
                     public void onSuccess(Pokemon pokemon) {
+                        // It should be always checked if MvpView (Fragment or Activity) is attached. 
+                        // Calling showProgress() on a not-attached fragment will throw a NPE
+                        // It is possible to ask isAdded() in the fragment, but it's better to ask in the presenter
                         getMvpView().showProgress(false);
                         getMvpView().showPokemon(pokemon);
                         for (Statistic statistic : pokemon.stats) {
