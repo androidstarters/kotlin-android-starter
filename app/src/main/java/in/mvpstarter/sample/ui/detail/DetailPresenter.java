@@ -8,10 +8,11 @@ import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
 import in.mvpstarter.sample.injection.ConfigPersistent;
 import in.mvpstarter.sample.ui.base.BasePresenter;
-import rx.SingleSubscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 
 @ConfigPersistent
 public class DetailPresenter extends BasePresenter<DetailMvpView> {
@@ -32,10 +33,15 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
     void getPokemon(String name) {
         checkViewAttached();
         getMvpView().showProgress(true);
-        Subscription subs = mDataManager.getPokemon(name)
+        mDataManager.getPokemon(name)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new SingleSubscriber<Pokemon>() {
+                .subscribe(new SingleObserver<Pokemon>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
                     @Override
                     public void onSuccess(Pokemon pokemon) {
                         getMvpView().showProgress(false);
@@ -51,7 +57,6 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
                         getMvpView().showError(error);
                     }
                 });
-        addSubscription(subs);
     }
 
 

@@ -70,6 +70,7 @@ android {
         exclude 'META-INF/license/LICENSE.base64.txt'
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/rxjava.properties'
     }
 
     compileOptions {
@@ -138,7 +139,7 @@ dependencies {
     compile "com.squareup.sqlbrite:sqlbrite:$SQLBRITE_VERSION"
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
-    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
     compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
 
@@ -147,8 +148,8 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
-    compile "io.reactivex:rxandroid:1.2.1"
-    compile "io.reactivex:rxjava:1.2.5"
+    compile "io.reactivex.rxjava2:rxjava:2.0.5"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
 
     //RxPermission for easy runtime permission management
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'

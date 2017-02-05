@@ -4,13 +4,14 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import rx.Scheduler;
-import rx.android.plugins.RxAndroidPlugins;
-import rx.android.plugins.RxAndroidSchedulersHook;
-import rx.functions.Func1;
-import rx.plugins.RxJavaHooks;
-import rx.schedulers.Schedulers;
+import java.util.concurrent.Callable;
 
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.plugins.RxAndroidPlugins;
+import io.reactivex.functions.Function;
+import io.reactivex.plugins.RxJavaPlugins;
+import io.reactivex.schedulers.Schedulers;
 /**
  * NOTE: You MUST use this rule in every test class that targets app code that uses RxJava.
  * Even when that code doesn't use any scheduler. The RxJava {@link Schedulers} class is setup
@@ -25,34 +26,30 @@ import rx.schedulers.Schedulers;
  * if the application code uses RxJava plugins this may affect the behaviour of the testing method.
  */
 public class RxSchedulersOverrideRule implements TestRule {
-
-    private final RxAndroidSchedulersHook mRxAndroidSchedulersHook = new RxAndroidSchedulersHook() {
-        @Override
-        public Scheduler getMainThreadScheduler() {
-            return Schedulers.immediate();
-        }
-    };
-
-    private final Func1<Scheduler, Scheduler> mRxJavaSchedulerHook = scheduler
-            -> Schedulers.immediate();
+    
+    public final Scheduler SCHEDULER_INSTANCE = Schedulers.trampoline();
+    private Function<Scheduler, Scheduler> mSchedulerFunction = scheduler -> SCHEDULER_INSTANCE;
+    private Function<Callable<Scheduler>, Scheduler> mSchedulerFunctionLazy = schedulerCallable
+            -> SCHEDULER_INSTANCE;
 
     @Override
     public Statement apply(final Statement base, Description description) {
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
-                RxAndroidPlugins.getInstance().reset();
-                RxAndroidPlugins.getInstance().registerSchedulersHook(mRxAndroidSchedulersHook);
+                RxAndroidPlugins.reset();
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler(mSchedulerFunctionLazy);
 
-                RxJavaHooks.reset();
-                RxJavaHooks.setOnIOScheduler(mRxJavaSchedulerHook);
-                RxJavaHooks.setOnNewThreadScheduler(mRxJavaSchedulerHook);
-                RxJavaHooks.setOnComputationScheduler(mRxJavaSchedulerHook);
+                RxJavaPlugins.reset();
+                RxJavaPlugins.setIoSchedulerHandler(mSchedulerFunction);
+                RxJavaPlugins.setNewThreadSchedulerHandler(mSchedulerFunction);
+                RxJavaPlugins.setComputationSchedulerHandler(mSchedulerFunction);
 
                 base.evaluate();
 
-                RxAndroidPlugins.getInstance().reset();
-                RxJavaHooks.reset();
+                RxAndroidPlugins.reset();
+                RxJavaPlugins.reset();
+
             }
         };
     }
