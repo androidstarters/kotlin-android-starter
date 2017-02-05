@@ -16,7 +16,7 @@ import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.Statistic;
 import in.mvpstarter.sample.ui.detail.DetailActivity;
 import in.mvpstarter.sample.util.ErrorTestUtil;
-import rx.Single;
+import io.reactivex.Single;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
