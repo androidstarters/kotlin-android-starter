@@ -15,8 +15,7 @@ import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.PokemonListResponse;
 import in.mvpstarter.sample.data.remote.MvpStarterService;
 import in.mvpstarter.sample.util.RxSchedulersOverrideRule;
-import rx.Single;
-import rx.observers.TestSubscriber;
+import io.reactivex.Single;
 
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
@@ -46,10 +45,10 @@ public class DataManagerTest {
         when(mMockMvpStarterService.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse));
 
-        TestSubscriber<List<String>> testSubscriber = new TestSubscriber<>();
-        mDataManager.getPokemonList(10).subscribe(testSubscriber);
-        testSubscriber.assertCompleted();
-        testSubscriber.assertValue(TestDataFactory.makePokemonNameList(namedResourceList));
+        mDataManager.getPokemonList(10)
+                .test()
+                .assertComplete()
+                .assertValue(TestDataFactory.makePokemonNameList(namedResourceList));
     }
 
     @Test
@@ -59,9 +58,9 @@ public class DataManagerTest {
         when(mMockMvpStarterService.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon));
 
-        TestSubscriber<Pokemon> testSubscriber = new TestSubscriber<>();
-        mDataManager.getPokemon(name).subscribe(testSubscriber);
-        testSubscriber.assertCompleted();
-        testSubscriber.assertValue(pokemon);
+        mDataManager.getPokemon(name)
+                .test()
+                .assertComplete()
+                .assertValue(pokemon);
     }
 }
