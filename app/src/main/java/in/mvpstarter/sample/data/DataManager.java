@@ -10,6 +10,7 @@ import in.mvpstarter.sample.data.model.NamedResource;
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.PokemonListResponse;
 import in.mvpstarter.sample.data.remote.MvpStarterService;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
 
@@ -25,16 +26,11 @@ public class DataManager {
 
     public Single<List<String>> getPokemonList(int limit) {
         return mMvpStarterService.getPokemonList(limit)
-                .flatMap(new Function<PokemonListResponse, Single<List<String>>>() {
-                    @Override
-                    public Single<List<String>> apply(PokemonListResponse pokemonListResponse) {
-                        List<String> pokemonNames = new ArrayList<>();
-                        for (NamedResource pokemon : pokemonListResponse.results) {
-                            pokemonNames.add(pokemon.name);
-                        }
-                        return Single.just(pokemonNames);
-                    }
-                });
+                .map(pokemonListResponse -> pokemonListResponse.results)
+                .flatMapObservable(Observable::just)
+                .flatMapIterable(namedResources -> namedResources)
+                .map(namedResource -> namedResource.name)
+                .toList();
     }
 
     public Single<Pokemon> getPokemon(String name) {

@@ -15,6 +15,9 @@ android {
     }
 
     defaultConfig {
+        defaultPublishConfig 'debug'
+        publishNonDefault true
+
         applicationId "in.mvpstarter.sample"
         minSdkVersion 18
         targetSdkVersion 25
@@ -113,7 +116,7 @@ dependencies {
     final RUNNER_VERSION = '0.5'
     final BUTTERKNIFE_VERSION = '8.5.1'
     final MOCKITO_VERSION = '2.6.8'
-    final RESTMOCK_VERSION = '0.1.4'
+    final RESTMOCK_VERSION = '0.2.0'
     final ROBOELECTRIC_VERSION = '3.2.2'
     final LEAKCANARY_VERSION = '1.5'
     final SQLBRITE_VERSION = '1.1.1'
