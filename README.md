@@ -26,6 +26,7 @@ npm install -g generator-android-mvp-starter
 mkdir NewApp && cd $_
 yo android-mvp-starter
 ```
+<img src="http://recordit.co/A7Jh6Y9AnS">
 
 ## Building
 
