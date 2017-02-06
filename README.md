@@ -4,6 +4,8 @@
 
 An MVP Boilerplate to save me having to create the same project over from scratch every time! :)
 
+<img src="http://g.recordit.co/L5selg7aIv.gif">
+
 ## This project uses:
 - [RxJava2](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [Retrofit](http://square.github.io/retrofit/) / [OkHttp](http://square.github.io/okhttp/)
@@ -26,7 +28,7 @@ npm install -g generator-android-mvp-starter
 mkdir NewApp && cd $_
 yo android-mvp-starter
 ```
-<img src="http://recordit.co/A7Jh6Y9AnS">
+<img src="http://g.recordit.co/7JNqTQMwLS.gif">
 
 ## Building
 
