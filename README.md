@@ -3,6 +3,10 @@
 [![Join the chat at https://gitter.im/android-mvp-starter/Lobby](https://badges.gitter.im/android-mvp-starter/Lobby.svg)](https://gitter.im/android-mvp-starter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 An MVP Boilerplate to save me having to create the same project over from scratch every time! :)
+<p align="center">
+  <img src="http://g.recordit.co/L5selg7aIv.gif" width="250">
+  <img src="http://g.recordit.co/7JNqTQMwLS.gif">
+</p>
 
 ## This project uses:
 - [RxJava2](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid)
@@ -18,6 +22,7 @@ An MVP Boilerplate to save me having to create the same project over from scratc
 - [Robolectric](http://robolectric.org/) for framework specific unit tests
 - [Mockito](http://mockito.org/)
 - [Checkstyle](http://checkstyle.sourceforge.net/), [PMD](https://pmd.github.io/) and [Findbugs](http://findbugs.sourceforge.net/) for code analysis
+
 
 ## Create new project using yeoman [generator-android-mvp-starter](https://github.com/ravidsrk/generator-android-mvp-starter)
 ```bash
