@@ -1,4 +1,4 @@
-package in.mvpstarter.sample.data;
+package in.mvpstarter.sample;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import in.mvpstarter.sample.common.TestDataFactory;
+import in.mvpstarter.sample.data.DataManager;
 import in.mvpstarter.sample.data.model.NamedResource;
 import in.mvpstarter.sample.data.model.Pokemon;
 import in.mvpstarter.sample.data.model.PokemonListResponse;

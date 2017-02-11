@@ -14,7 +14,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
     private final DataManager mDataManager;
 
     @Inject
-    DetailPresenter(DataManager dataManager) {
+    public DetailPresenter(DataManager dataManager) {
         mDataManager = dataManager;
     }
 
@@ -23,7 +23,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
         super.attachView(mvpView);
     }
 
-    void getPokemon(String name) {
+    public void getPokemon(String name) {
         checkViewAttached();
         getMvpView().showProgress(true);
         mDataManager.getPokemon(name)

@@ -31,10 +31,10 @@ public class TestDataFactory {
         return pokemon;
     }
 
-    public static List<Pokemon> makePokemonList(int count) {
-        List<Pokemon> pokemonList = new ArrayList<>();
+    public static List<String> makePokemonNamesList(int count) {
+        List<String> pokemonList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            pokemonList.add(makePokemon(String.valueOf(i)));
+            pokemonList.add(makePokemon(String.valueOf(i)).name);
         }
         return pokemonList;
     }
