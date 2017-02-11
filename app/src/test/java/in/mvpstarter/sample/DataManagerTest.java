@@ -18,8 +18,8 @@ import in.mvpstarter.sample.data.remote.MvpStarterService;
 import in.mvpstarter.sample.util.RxSchedulersOverrideRule;
 import io.reactivex.Single;
 
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
