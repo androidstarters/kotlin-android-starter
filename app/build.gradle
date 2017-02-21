@@ -107,7 +107,7 @@ retrolambda {
 
 dependencies {
     final PLAY_SERVICES_VERSION = '10.0.1'
-    final SUPPORT_LIBRARY_VERSION = '25.1.0'
+    final SUPPORT_LIBRARY_VERSION = '25.2.0'
     final RETROFIT_VERSION = '2.1.0'
     final OKHTTP_VERSION = '3.5.0'
     final DAGGER_VERSION = '2.8'
