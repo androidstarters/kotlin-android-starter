@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+
+    <issue id="InvalidPackage" severity="warning"/>
+    <issue id="UnusedResources" severity="fatal"/>
+    <issue id="ResourceType" severity="warning" />
+
+    <issue id="UnusedResources" severity="ignore"/>              // Unused will be removed on release
+    <issue id="IconExpectedSize" severity="ignore"/>             // Using the material icons provided from Google
+    <issue id="GoogleAppIndexingApiWarning" severity="ignore"/>  // We might want to index our app later
+    <issue id="InvalidPackage" severity="ignore"/>               // Butterknife, Okio and Realm
+    <issue id="ResourceType" severity="ignore"/>                 // Annotation binding
+    <issue id="GradleDependency" severity="ignore"/>
+    <issue id="NewerVersionAvailable" severity="ignore"/>
+    <issue id="PropertyEscape" severity="ignore"/>                // CI issue with sdk.dir in local.properties
+</lint>
