@@ -1,0 +1,83 @@
+ext {
+    versions = [
+            support       : "25.2.0",
+            firebase      : '10.2.0',
+            okHttp        : "3.5.0",
+            retrofit      : '2.2.0',
+            espresso      : '2.2.2',
+            espressoRunner: '0.5',
+            powerMock     : '1.6.6',
+            hamcrest      : '1.3',
+            restMock      : '0.2.0',
+            dagger        : '2.8',
+            butterKnife   : '8.5.1'
+    ]
+
+    mockito = [mockito: "org.mockito:mockito-core:2.6.8"]
+    junit = [junit: "junit:junit:4.12"]
+    restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
+
+    supportDeps = [
+            cardView         : "com.android.support:cardview-v7:$versions.support",
+            appcompatV7      : "com.android.support:appcompat-v7:$versions.support",
+            design           : "com.android.support:design:$versions.support",
+            recyclerView     : "com.android.support:recyclerview-v7:$versions.support",
+            supportAnnotation: "com.android.support:support-annotations:$versions.support",
+            gridLayout       : "com.android.support:gridlayout-v7:$versions.support"
+    ]
+
+    rxJava = [
+            rxJava   : "io.reactivex.rxjava2:rxjava:2.0.5",
+            rxAndroid: "io.reactivex.rxjava2:rxandroid:2.0.1"
+    ]
+
+    retrofit = [
+            retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:1.1.1"
+    ]
+
+    okHttp = [
+            logger: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp"
+    ]
+
+    googlePlay = [
+            maps             : "com.google.android.gms:play-services-maps:$versions.firebase",
+            crash            : "com.google.firebase:firebase-crash:$versions.firebase",
+            firebaseCore     : "com.google.firebase:firebase-core:$versions.firebase",
+            firebaseMessaging: "com.google.firebase:firebase-messaging:$versions.firebase"
+    ]
+    unitTest = [
+            harcrestCore        : "org.hamcrest:hamcrest-core:$versions.hamcrest",
+            harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
+            hamcrestIntegration : "org.hamcrest:hamcrest-integration:$versions.hamcrest",
+            robolectric         : "org.robolectric:robolectric:3.2.2",
+            supportAnnotation   : "com.android.support:support-annotations:$versions.support",
+            restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
+            easymock            : "org.easymock:easymock:3.4",
+            assertj             : "com.squareup.assertj:assertj-android:1.1.1",        // AssertJ
+            powermockCore       : "org.powermock:powermock-core:$versions.powerMock",                // PowerMock
+            powermockModuleJunit: "org.powermock:powermock-module-junit4:$versions.powerMock",
+            powermockApiEasymock: "org.powermock:powermock-api-easymock:$versions.powerMock"        // PowerMock + EasyMock extension
+    ] + junit + mockito + restMock
+
+    androidTests = [
+            espressoCore   : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+            espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+            espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+            testRunner     : "com.android.support.test:runner:$versions.espressoRunner",
+            testRules      : "com.android.support.test:rules:$versions.espressoRunner",
+    ] + mockito + restMock
+
+    supportLibs = supportDeps.values()
+    networkLibs = retrofit.values() + okHttp.values()
+    rxJavaLibs = rxJava.values()
+    googlePlayLibs = googlePlay.values()
+    unitTestLibs = unitTest.values()
+    androidTestsLibs = androidTests.values() + supportLibs
+
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5"
+    daggerCompiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+}
