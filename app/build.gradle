@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: '../config/quality/quality.gradle'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'jacoco'
@@ -37,14 +40,19 @@ android {
     }
 
     sourceSets {
-        def commonTestDir = 'src/commonTest/java'
+        def commonTestDir = 'src/commonTest/kotlin'
         test {
             java.srcDir commonTestDir
         }
         androidTest {
             java.srcDir commonTestDir
         }
+
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
     }
+
 
     lintOptions {
         textOutput "stdout"
@@ -124,15 +132,19 @@ dependencies {
     testCompile leakCannary
 
     // APT dependencies
-    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterKnife"
-    annotationProcessor daggerCompiler
-    testAnnotationProcessor daggerCompiler
-    androidTestAnnotationProcessor daggerCompiler
+    kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+    kapt daggerCompiler
+    kaptTest daggerCompiler
+    kaptAndroidTest daggerCompiler
 
     testCompile unitTestLibs
     androidTestCompile androidTestsLibs
 
     retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    testCompile "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:1.1.2-2"
 }
 
 // Log out test results to console
@@ -142,4 +154,7 @@ tasks.matching { it instanceof Test }.all {
 
 tasks.withType(JavaCompile) {
     options.compilerArgs << "-Xlint:deprecation" << "-Werror"
+}
+repositories {
+    mavenCentral()
 }
