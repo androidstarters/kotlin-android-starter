@@ -72,5 +72,4 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
             });
         }
     }
-
 }
