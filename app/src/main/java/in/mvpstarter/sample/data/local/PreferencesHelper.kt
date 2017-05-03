@@ -1,12 +1,10 @@
 package `in`.mvpstarter.sample.data.local
 
+import `in`.mvpstarter.sample.injection.ApplicationContext
 import android.content.Context
 import android.content.SharedPreferences
-
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import `in`.mvpstarter.sample.injection.ApplicationContext
 
 
 @Singleton

@@ -1,5 +1,7 @@
 package `in`.mvpstarter.sample.ui.detail.widget
 
+import `in`.mvpstarter.sample.R
+import `in`.mvpstarter.sample.data.model.Statistic
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
@@ -9,11 +11,8 @@ import android.view.LayoutInflater
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-
 import butterknife.BindView
 import butterknife.ButterKnife
-import `in`.mvpstarter.sample.R
-import `in`.mvpstarter.sample.data.model.Statistic
 
 class StatisticView : RelativeLayout {
 

@@ -3,14 +3,11 @@ package `in`.mvpstarter.sample.runner
 import android.annotation.SuppressLint
 import android.app.Application
 import android.app.KeyguardManager
-import android.os.PowerManager
-import android.support.test.runner.AndroidJUnitRunner
-
 import android.content.Context.KEYGUARD_SERVICE
 import android.content.Context.POWER_SERVICE
-import android.os.PowerManager.ACQUIRE_CAUSES_WAKEUP
-import android.os.PowerManager.FULL_WAKE_LOCK
-import android.os.PowerManager.ON_AFTER_RELEASE
+import android.os.PowerManager
+import android.os.PowerManager.*
+import android.support.test.runner.AndroidJUnitRunner
 
 open class UnlockDeviceAndroidJUnitRunner : AndroidJUnitRunner() {
 

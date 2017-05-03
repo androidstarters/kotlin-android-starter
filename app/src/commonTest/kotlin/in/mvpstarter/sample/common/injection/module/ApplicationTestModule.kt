@@ -1,17 +1,14 @@
 package `in`.mvpstarter.sample.common.injection.module
 
-import android.app.Application
-import android.content.Context
-
-import javax.inject.Singleton
-
-import dagger.Module
-import dagger.Provides
 import `in`.mvpstarter.sample.data.DataManager
 import `in`.mvpstarter.sample.data.remote.MvpStarterService
 import `in`.mvpstarter.sample.injection.ApplicationContext
-
+import android.app.Application
+import android.content.Context
+import dagger.Module
+import dagger.Provides
 import org.mockito.Mockito.mock
+import javax.inject.Singleton
 
 /**
  * Provides application-level dependencies for an app running on a testing environment

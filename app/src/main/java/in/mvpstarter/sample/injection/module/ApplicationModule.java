@@ -20,6 +20,12 @@ public class ApplicationModule {
     }
 
     @Provides
+    @Singleton
+    static MvpStarterService provideMvpStarterService() {
+        return MvpStarterServiceFactory.INSTANCE.makeStarterService();
+    }
+
+    @Provides
     Application provideApplication() {
         return mApplication;
     }
@@ -28,11 +34,5 @@ public class ApplicationModule {
     @ApplicationContext
     Context provideContext() {
         return mApplication;
-    }
-
-    @Provides
-    @Singleton
-    static MvpStarterService provideMvpStarterService() {
-        return MvpStarterServiceFactory.INSTANCE.makeStarterService();
     }
 }

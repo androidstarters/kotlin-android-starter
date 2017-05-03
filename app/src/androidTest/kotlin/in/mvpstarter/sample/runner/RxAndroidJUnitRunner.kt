@@ -1,10 +1,9 @@
 package `in`.mvpstarter.sample.runner
 
-import android.os.Bundle
-import android.support.test.espresso.Espresso
-
 import `in`.mvpstarter.sample.util.RxIdlingExecutionHook
 import `in`.mvpstarter.sample.util.RxIdlingResource
+import android.os.Bundle
+import android.support.test.espresso.Espresso
 import rx.plugins.RxJavaPlugins
 
 /**

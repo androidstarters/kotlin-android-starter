@@ -1,11 +1,11 @@
 package `in`.mvpstarter.sample.injection.component
 
-import dagger.Component
 import `in`.mvpstarter.sample.injection.ConfigPersistent
 import `in`.mvpstarter.sample.injection.module.ActivityModule
 import `in`.mvpstarter.sample.injection.module.FragmentModule
 import `in`.mvpstarter.sample.ui.base.BaseActivity
 import `in`.mvpstarter.sample.ui.base.BaseFragment
+import dagger.Component
 
 /**
  * A dagger component that will live during the lifecycle of an Activity or Fragment but it won't

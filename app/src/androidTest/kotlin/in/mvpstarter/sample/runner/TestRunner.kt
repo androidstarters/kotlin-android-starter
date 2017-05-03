@@ -1,9 +1,8 @@
 package `in`.mvpstarter.sample.runner
 
+import `in`.mvpstarter.sample.MvpStarterApplication
 import android.app.Application
 import android.content.Context
-
-import `in`.mvpstarter.sample.MvpStarterApplication
 import io.appflate.restmock.android.RESTMockTestRunner
 
 /**
