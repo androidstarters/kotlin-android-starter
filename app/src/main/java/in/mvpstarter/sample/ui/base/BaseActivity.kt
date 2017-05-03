@@ -1,19 +1,17 @@
 package `in`.mvpstarter.sample.ui.base
 
-import android.os.Bundle
-import android.support.v4.util.LongSparseArray
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
-
-import java.util.concurrent.atomic.AtomicLong
-
-import butterknife.ButterKnife
 import `in`.mvpstarter.sample.MvpStarterApplication
 import `in`.mvpstarter.sample.injection.component.ActivityComponent
 import `in`.mvpstarter.sample.injection.component.ConfigPersistentComponent
 import `in`.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent
 import `in`.mvpstarter.sample.injection.module.ActivityModule
+import android.os.Bundle
+import android.support.v4.util.LongSparseArray
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
+import butterknife.ButterKnife
 import timber.log.Timber
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Abstract activity that every other Activity in this application must implement. It provides the

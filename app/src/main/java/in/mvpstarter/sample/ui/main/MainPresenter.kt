@@ -1,11 +1,10 @@
 package `in`.mvpstarter.sample.ui.main
 
-import javax.inject.Inject
-
 import `in`.mvpstarter.sample.data.DataManager
 import `in`.mvpstarter.sample.injection.ConfigPersistent
 import `in`.mvpstarter.sample.ui.base.BasePresenter
 import `in`.mvpstarter.sample.util.rx.scheduler.SchedulerUtils
+import javax.inject.Inject
 
 @ConfigPersistent
 class MainPresenter @Inject

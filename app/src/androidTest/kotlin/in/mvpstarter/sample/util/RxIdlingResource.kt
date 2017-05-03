@@ -1,10 +1,8 @@
 package `in`.mvpstarter.sample.util
 
 import android.support.test.espresso.IdlingResource
-
-import java.util.concurrent.atomic.AtomicInteger
-
 import timber.log.Timber
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Espresso Idling resource that handles waiting for RxJava Observables executions.

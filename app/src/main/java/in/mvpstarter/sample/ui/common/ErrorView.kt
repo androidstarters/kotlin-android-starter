@@ -1,5 +1,6 @@
 package `in`.mvpstarter.sample.ui.common
 
+import `in`.mvpstarter.sample.R
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
@@ -7,10 +8,8 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-
 import butterknife.ButterKnife
 import butterknife.OnClick
-import `in`.mvpstarter.sample.R
 
 class ErrorView : LinearLayout {
 

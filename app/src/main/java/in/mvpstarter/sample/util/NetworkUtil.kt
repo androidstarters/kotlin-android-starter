@@ -2,8 +2,6 @@ package `in`.mvpstarter.sample.util
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
-
 import retrofit2.HttpException
 
 

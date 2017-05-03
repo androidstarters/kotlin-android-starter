@@ -1,7 +1,5 @@
 package `in`.mvpstarter.sample.ui.base
 
-import rx.Observable
-import rx.Single
 import rx.Subscription
 import rx.subscriptions.CompositeSubscription
 

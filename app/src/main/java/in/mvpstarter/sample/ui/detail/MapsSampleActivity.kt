@@ -1,16 +1,14 @@
 package `in`.mvpstarter.sample.ui.detail
 
+import `in`.mvpstarter.sample.R
+import `in`.mvpstarter.sample.ui.base.BaseActivity
 import android.os.Bundle
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-
-import `in`.mvpstarter.sample.R
-import `in`.mvpstarter.sample.ui.base.BaseActivity
 
 class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
 

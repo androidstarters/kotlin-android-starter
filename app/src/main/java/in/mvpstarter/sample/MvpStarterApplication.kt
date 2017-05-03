@@ -1,14 +1,12 @@
 package `in`.mvpstarter.sample
 
-import android.app.Application
-import android.content.Context
-
-import com.facebook.stetho.Stetho
-import com.squareup.leakcanary.LeakCanary
-
 import `in`.mvpstarter.sample.injection.component.ApplicationComponent
 import `in`.mvpstarter.sample.injection.component.DaggerApplicationComponent
 import `in`.mvpstarter.sample.injection.module.ApplicationModule
+import android.app.Application
+import android.content.Context
+import com.facebook.stetho.Stetho
+import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
 class MvpStarterApplication : Application() {

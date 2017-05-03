@@ -1,22 +1,7 @@
 package `in`.mvpstarter.sample.util.rx.scheduler
 
+import io.reactivex.*
 import org.reactivestreams.Publisher
-
-import io.reactivex.Completable
-import io.reactivex.CompletableSource
-import io.reactivex.CompletableTransformer
-import io.reactivex.Flowable
-import io.reactivex.FlowableTransformer
-import io.reactivex.Maybe
-import io.reactivex.MaybeSource
-import io.reactivex.MaybeTransformer
-import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.ObservableTransformer
-import io.reactivex.Scheduler
-import io.reactivex.Single
-import io.reactivex.SingleSource
-import io.reactivex.SingleTransformer
 
 /**
  * Created by lam on 2/6/17.
