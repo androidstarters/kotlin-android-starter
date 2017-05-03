@@ -27,7 +27,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
         checkViewAttached();
         getMvpView().showProgress(true);
         mDataManager.getPokemon(name)
-                .compose(SchedulerUtils.ioToMain())
+                .compose(SchedulerUtils.INSTANCE.ioToMain())
                 .subscribe(pokemon -> {
                     // It should be always checked if MvpView (Fragment or Activity) is attached.
                     // Calling showProgress() on a not-attached fragment will throw a NPE
