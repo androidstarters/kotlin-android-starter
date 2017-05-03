@@ -23,6 +23,7 @@ import org.mockito.Mockito.never
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import org.mockito.MockitoAnnotations
 
 /**
  * Created by ravindra on 24/12/16.
@@ -36,11 +37,12 @@ class DetailPresenterTest {
     internal var mMockDataManager: DataManager? = null
     private var mDetailPresenter: DetailPresenter? = null
 
-    @Rule
-    val mOverrideSchedulersRule = RxSchedulersOverrideRule()
+    @JvmField
+    @Rule val mOverrideSchedulersRule = RxSchedulersOverrideRule()
 
     @Before
     fun setUp() {
+        MockitoAnnotations.initMocks(this)
         mDetailPresenter = DetailPresenter(mMockDataManager)
         mDetailPresenter!!.attachView(mMockDetailMvpView)
     }
