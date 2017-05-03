@@ -40,7 +40,6 @@ class TestComponentRule(val context: Context) : TestRule {
                 val application = MvpStarterApplication.get(context)
                 application.component = testComponent
                 base.evaluate()
-                application.component = null
             }
         }
     }

@@ -45,7 +45,7 @@ public abstract class BaseFragment extends Fragment {
         if (sComponentsArray.get(mFragmentId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mFragmentId);
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication.get(
+                    .applicationComponent(MvpStarterApplication.Companion.get(
                             getActivity()).getComponent())
                     .build();
             sComponentsArray.put(mFragmentId, configPersistentComponent);
