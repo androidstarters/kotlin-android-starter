@@ -7,6 +7,7 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.view.View
 import org.hamcrest.Matchers.allOf
 
 object ErrorTestUtil {
