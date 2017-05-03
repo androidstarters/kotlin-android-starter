@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (sComponentsArray.get(mActivityId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mActivityId);
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication.get(this).getComponent())
+                    .applicationComponent(MvpStarterApplication.Companion.get(this).getComponent())
                     .build();
             sComponentsArray.put(mActivityId, configPersistentComponent);
         } else {
