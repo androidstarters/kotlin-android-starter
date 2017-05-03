@@ -1,30 +1,27 @@
 package `in`.mvpstarter.sample
 
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
-
 import `in`.mvpstarter.sample.common.TestDataFactory
 import `in`.mvpstarter.sample.data.DataManager
 import `in`.mvpstarter.sample.data.model.PokemonListResponse
 import `in`.mvpstarter.sample.data.remote.MvpStarterService
 import `in`.mvpstarter.sample.util.RxSchedulersOverrideRule
 import io.reactivex.Single
-
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class DataManagerTest {
 
-    @Rule @JvmField
-    val mOverrideSchedulersRule = RxSchedulersOverrideRule()
-    @Mock
-    internal var mMockMvpStarterService: MvpStarterService? = null
+    @Rule @JvmField val mOverrideSchedulersRule = RxSchedulersOverrideRule()
+    @Mock lateinit var mMockMvpStarterService: MvpStarterService
+
     private var mDataManager: DataManager? = null
 
     @Before

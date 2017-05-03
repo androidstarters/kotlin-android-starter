@@ -1,17 +1,15 @@
 package `in`.mvpstarter.sample.util
 
-import org.junit.rules.TestRule
-import org.junit.runner.Description
-import org.junit.runners.model.Statement
-
-import java.util.concurrent.Callable
-
 
 import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.functions.Function
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
+import org.junit.rules.TestRule
+import org.junit.runner.Description
+import org.junit.runners.model.Statement
+import java.util.concurrent.Callable
 
 /**
  * NOTE: You MUST use this rule in every test class that targets app code that uses RxJava.
