@@ -1,27 +1,22 @@
 package `in`.mvpstarter.sample
 
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
-
 import `in`.mvpstarter.sample.common.TestDataFactory
 import `in`.mvpstarter.sample.data.DataManager
 import `in`.mvpstarter.sample.ui.main.MainMvpView
 import `in`.mvpstarter.sample.ui.main.MainPresenter
 import `in`.mvpstarter.sample.util.RxSchedulersOverrideRule
 import io.reactivex.Single
-
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers
 import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.anyBoolean
-import org.mockito.Mockito.never
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
+import org.mockito.Mock
+import org.mockito.Mockito.*
+import org.mockito.junit.MockitoJUnitRunner
 
 /**
  * Created by ravindra on 24/12/16.
@@ -29,10 +24,8 @@ import org.mockito.Mockito.`when`
 @RunWith(MockitoJUnitRunner::class)
 class MainPresenterTest {
 
-    @Mock
-    internal var mMockMainMvpView: MainMvpView? = null
-    @Mock
-    internal var mMockDataManager: DataManager? = null
+    @Mock lateinit var mMockMainMvpView: MainMvpView
+    @Mock lateinit var mMockDataManager: DataManager
     private var mMainPresenter: MainPresenter? = null
 
     @JvmField
@@ -54,7 +47,7 @@ class MainPresenterTest {
     @Throws(Exception::class)
     fun getPokemonReturnsPokemonNames() {
         val pokemonList = TestDataFactory.makePokemonNamesList(10)
-        `when`(mMockDataManager!!.getPokemonList(10))
+        `when`(mMockDataManager.getPokemonList(10))
                 .thenReturn(Single.just(pokemonList))
 
         mMainPresenter!!.getPokemon(10)
@@ -68,7 +61,7 @@ class MainPresenterTest {
     @Test
     @Throws(Exception::class)
     fun getPokemonReturnsError() {
-        `when`(mMockDataManager!!.getPokemonList(10))
+        `when`(mMockDataManager.getPokemonList(10))
                 .thenReturn(Single.error<List<String>>(RuntimeException()))
 
         mMainPresenter!!.getPokemon(10)
