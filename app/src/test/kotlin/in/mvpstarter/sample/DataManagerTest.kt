@@ -32,10 +32,9 @@ class DataManagerTest {
     @Test
     fun getPokemonListCompletesAndEmitsPokemonList() {
         val namedResourceList = TestDataFactory.makeNamedResourceList(5)
-        val pokemonListResponse = PokemonListResponse()
-        pokemonListResponse.results = namedResourceList
+        val pokemonListResponse = PokemonListResponse(namedResourceList)
 
-        `when`(mMockMvpStarterService!!.getPokemonList(anyInt()))
+        `when`(mMockMvpStarterService.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse))
 
         mDataManager!!.getPokemonList(10)
@@ -48,7 +47,7 @@ class DataManagerTest {
     fun getPokemonCompletesAndEmitsPokemon() {
         val name = "charmander"
         val pokemon = TestDataFactory.makePokemon(name)
-        `when`(mMockMvpStarterService!!.getPokemon(anyString()))
+        `when`(mMockMvpStarterService.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
         mDataManager!!.getPokemon(name)

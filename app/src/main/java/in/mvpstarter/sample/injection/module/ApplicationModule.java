@@ -33,6 +33,6 @@ public class ApplicationModule {
     @Provides
     @Singleton
     static MvpStarterService provideMvpStarterService() {
-        return MvpStarterServiceFactory.makeStarterService();
+        return MvpStarterServiceFactory.INSTANCE.makeStarterService();
     }
 }
