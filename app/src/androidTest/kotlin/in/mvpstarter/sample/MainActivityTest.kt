@@ -1,31 +1,24 @@
 package `in`.mvpstarter.sample
 
+import `in`.mvpstarter.sample.common.TestComponentRule
+import `in`.mvpstarter.sample.common.TestDataFactory
+import `in`.mvpstarter.sample.data.model.Pokemon
+import `in`.mvpstarter.sample.ui.main.MainActivity
+import `in`.mvpstarter.sample.util.ErrorTestUtil
 import android.support.test.InstrumentationRegistry
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
-
+import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
-
-import `in`.mvpstarter.sample.common.TestComponentRule
-import `in`.mvpstarter.sample.common.TestDataFactory
-import `in`.mvpstarter.sample.data.model.NamedResource
-import `in`.mvpstarter.sample.data.model.Pokemon
-import `in`.mvpstarter.sample.ui.main.MainActivity
-import `in`.mvpstarter.sample.util.ErrorTestUtil
-import io.reactivex.Single
-
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import org.mockito.Matchers.anyInt
-import org.mockito.Matchers.anyString
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.`when`
 
 @RunWith(AndroidJUnit4::class)
@@ -36,7 +29,7 @@ class MainActivityTest {
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
-    @Rule
+    @Rule @JvmField
     var chain: TestRule = RuleChain.outerRule(mComponent).around(mMain)
 
     @Test
