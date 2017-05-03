@@ -26,7 +26,7 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
         checkViewAttached();
         getMvpView().showProgress(true);
         mDataManager.getPokemonList(limit)
-                .compose(SchedulerUtils.ioToMain())
+                .compose(SchedulerUtils.INSTANCE.ioToMain())
                 .subscribe(pokemons -> {
                     getMvpView().showProgress(false);
                     getMvpView().showPokemon(pokemons);

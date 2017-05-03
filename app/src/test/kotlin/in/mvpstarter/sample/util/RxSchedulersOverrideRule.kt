@@ -33,7 +33,6 @@ class RxSchedulersOverrideRule : TestRule {
     private val mSchedulerFunction = Function<Scheduler, Scheduler> { SCHEDULER_INSTANCE }
     private val mSchedulerFunctionLazy = Function<Callable<Scheduler>, Scheduler> { SCHEDULER_INSTANCE }
 
-
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
             @Throws(Throwable::class)
