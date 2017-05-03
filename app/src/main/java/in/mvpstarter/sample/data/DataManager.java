@@ -5,7 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import in.mvpstarter.sample.data.model.NamedResource;
 import in.mvpstarter.sample.data.model.Pokemon;
+import in.mvpstarter.sample.data.model.PokemonListResponse;
 import in.mvpstarter.sample.data.remote.MvpStarterService;
 import io.reactivex.Single;
 
@@ -22,8 +24,8 @@ public class DataManager {
     public Single<List<String>> getPokemonList(int limit) {
         return mMvpStarterService.getPokemonList(limit)
                 .toObservable()
-                .flatMapIterable(namedResources -> namedResources.results)
-                .map(namedResource -> namedResource.name)
+                .flatMapIterable(PokemonListResponse::getResults)
+                .map(NamedResource::getName)
                 .toList();
     }
 

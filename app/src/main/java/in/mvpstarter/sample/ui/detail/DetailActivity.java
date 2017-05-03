@@ -79,9 +79,9 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
 
     @Override
     public void showPokemon(Pokemon pokemon) {
-        if (pokemon.sprites != null && pokemon.sprites.frontDefault != null) {
+        if (pokemon.getSprites() != null && pokemon.getSprites().getFrontDefault() != null) {
             Glide.with(this)
-                    .load(pokemon.sprites.frontDefault)
+                    .load(pokemon.getSprites().getFrontDefault())
                     .into(mPokemonImage);
         }
         mPokemonLayout.setVisibility(View.VISIBLE);

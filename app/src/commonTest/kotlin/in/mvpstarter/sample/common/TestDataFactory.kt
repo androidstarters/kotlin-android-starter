@@ -22,12 +22,7 @@ object TestDataFactory {
     }
 
     fun makePokemon(id: String): Pokemon {
-        val pokemon = Pokemon()
-        pokemon.id = id
-        pokemon.name = randomUuid() + id
-        pokemon.stats = makeStatisticList(3)
-        pokemon.sprites = makeSprites()
-        return pokemon
+        return Pokemon(id, randomUuid() + id, makeSprites(), makeStatisticList(3))
     }
 
     fun makePokemonNamesList(count: Int): List<String> {
@@ -68,17 +63,11 @@ object TestDataFactory {
     }
 
     fun makeNamedResource(unique: String): NamedResource {
-        val namedResource = NamedResource()
-        namedResource.name = randomUuid() + unique
-        namedResource.url = randomUuid()
-        return namedResource
+        return NamedResource(randomUuid() + unique, randomUuid())
     }
 
     fun makeNamedResourceList(count: Int): List<NamedResource> {
-        val namedResourceList = ArrayList<NamedResource>()
-        for (i in 0..count - 1) {
-            namedResourceList.add(makeNamedResource(i.toString()))
-        }
+        val namedResourceList = (0..count - 1).map { makeNamedResource(it.toString()) }
         return namedResourceList
     }
 }
