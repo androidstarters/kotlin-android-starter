@@ -21,7 +21,7 @@ import org.mockito.Mockito.`when`
 @RunWith(MockitoJUnitRunner::class)
 class DataManagerTest {
 
-    @Rule
+    @Rule @JvmField
     val mOverrideSchedulersRule = RxSchedulersOverrideRule()
     @Mock
     internal var mMockMvpStarterService: MvpStarterService? = null

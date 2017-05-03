@@ -35,6 +35,7 @@ class MainPresenterTest {
     internal var mMockDataManager: DataManager? = null
     private var mMainPresenter: MainPresenter? = null
 
+    @JvmField
     @Rule
     val mOverrideSchedulersRule = RxSchedulersOverrideRule()
 
