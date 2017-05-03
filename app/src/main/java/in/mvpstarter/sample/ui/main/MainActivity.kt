@@ -35,7 +35,7 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
 
         mSwipeRefreshLayout!!.setProgressBackgroundColorSchemeResource(R.color.primary)
         mSwipeRefreshLayout!!.setColorSchemeResources(R.color.white)
-        mSwipeRefreshLayout!!.setOnRefreshListener { mMainPresenter!!.getPokemon(POKEMON_COUNT) }
+        mSwipeRefreshLayout!!.setOnRefreshListener { mMainPresenter.getPokemon(POKEMON_COUNT) }
 
         mPokemonAdapter.setClickListener(this)
         mPokemonRecycler!!.layoutManager = LinearLayoutManager(this)
