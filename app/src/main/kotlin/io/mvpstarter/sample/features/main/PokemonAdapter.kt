@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.main
+package io.mvpstarter.sample.features.main
 
 import io.mvpstarter.sample.R
 import android.support.v7.widget.RecyclerView

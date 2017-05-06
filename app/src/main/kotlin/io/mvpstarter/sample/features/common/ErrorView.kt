@@ -1,23 +1,19 @@
-package io.mvpstarter.sample.ui.detail.widget
+package io.mvpstarter.sample.features.common
 
 import io.mvpstarter.sample.R
-import io.mvpstarter.sample.data.model.Statistic
-import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
-import butterknife.BindView
+import android.widget.LinearLayout
 import butterknife.ButterKnife
+import butterknife.OnClick
 
-class StatisticView : RelativeLayout {
+class ErrorView : LinearLayout {
 
-    @BindView(R.id.text_name) @JvmField var mNameText: TextView? = null
-    @BindView(R.id.progress_stat) @JvmField var mStatProgress: ProgressBar? = null
+    private var mErrorListener: ErrorListener? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -37,13 +33,24 @@ class StatisticView : RelativeLayout {
     }
 
     private fun init() {
-        LayoutInflater.from(context).inflate(R.layout.view_statistic, this)
+        orientation = LinearLayout.VERTICAL
+        gravity = Gravity.CENTER
+        LayoutInflater.from(context).inflate(R.layout.view_error, this)
         ButterKnife.bind(this)
     }
 
-    @SuppressLint("SetTextI18n")
-    fun setStat(statistic: Statistic) {
-        mNameText!!.text = statistic.stat!!.name.substring(0, 1).toUpperCase() + statistic.stat!!.name.substring(1)
-        mStatProgress!!.progress = statistic.baseStat
+    @OnClick(R.id.button_reload)
+    fun onReloadButtonClick() {
+        if (mErrorListener != null) {
+            mErrorListener!!.onReloadData()
+        }
+    }
+
+    fun setErrorListener(errorListener: ErrorListener) {
+        mErrorListener = errorListener
+    }
+
+    interface ErrorListener {
+        fun onReloadData()
     }
 }
