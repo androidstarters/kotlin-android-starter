@@ -11,7 +11,7 @@ import android.support.test.runner.AndroidJUnitRunner
 
 open class UnlockDeviceAndroidJUnitRunner : AndroidJUnitRunner() {
 
-    private var mWakeLock: PowerManager.WakeLock? = null
+    private lateinit var mWakeLock: PowerManager.WakeLock
 
     @SuppressLint("MissingPermission")
     override fun onStart() {
@@ -25,12 +25,12 @@ open class UnlockDeviceAndroidJUnitRunner : AndroidJUnitRunner() {
         val powerManager = application.getSystemService(POWER_SERVICE) as PowerManager
         mWakeLock = powerManager.newWakeLock(FULL_WAKE_LOCK or ACQUIRE_CAUSES_WAKEUP or
                 ON_AFTER_RELEASE, simpleName)
-        mWakeLock!!.acquire()
+        mWakeLock.acquire()
         super.onStart()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mWakeLock!!.release()
+        mWakeLock.release()
     }
 }
