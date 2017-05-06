@@ -2,8 +2,8 @@ package io.mvpstarter.sample
 
 import io.mvpstarter.sample.common.TestDataFactory
 import io.mvpstarter.sample.data.DataManager
-import io.mvpstarter.sample.ui.main.MainMvpView
-import io.mvpstarter.sample.ui.main.MainPresenter
+import io.mvpstarter.sample.features.main.MainMvpView
+import io.mvpstarter.sample.features.main.MainPresenter
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule
 import io.reactivex.Single
 import org.junit.After

@@ -3,7 +3,7 @@ package io.mvpstarter.sample
 import io.mvpstarter.sample.common.TestComponentRule
 import io.mvpstarter.sample.common.TestDataFactory
 import io.mvpstarter.sample.data.model.Pokemon
-import io.mvpstarter.sample.ui.main.MainActivity
+import io.mvpstarter.sample.features.main.MainActivity
 import io.mvpstarter.sample.util.ErrorTestUtil
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso.onView

@@ -1,9 +1,9 @@
-package io.mvpstarter.sample.ui.detail
+package io.mvpstarter.sample.features.detail
 
 import io.mvpstarter.sample.data.DataManager
 import io.mvpstarter.sample.data.model.Pokemon
 import io.mvpstarter.sample.injection.ConfigPersistent
-import io.mvpstarter.sample.ui.base.BasePresenter
+import io.mvpstarter.sample.features.base.BasePresenter
 import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils
 import javax.inject.Inject
 

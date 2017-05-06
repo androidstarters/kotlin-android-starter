@@ -1,8 +1,8 @@
-package io.mvpstarter.sample.ui.detail
+package io.mvpstarter.sample.features.detail
 
 import io.mvpstarter.sample.data.model.Pokemon
 import io.mvpstarter.sample.data.model.Statistic
-import io.mvpstarter.sample.ui.base.MvpView
+import io.mvpstarter.sample.features.base.MvpView
 
 interface DetailMvpView : MvpView {
 

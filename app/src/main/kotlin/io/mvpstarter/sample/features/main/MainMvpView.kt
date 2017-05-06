@@ -1,6 +1,6 @@
-package io.mvpstarter.sample.ui.main
+package io.mvpstarter.sample.features.main
 
-import io.mvpstarter.sample.ui.base.MvpView
+import io.mvpstarter.sample.features.base.MvpView
 
 interface MainMvpView : MvpView {
 

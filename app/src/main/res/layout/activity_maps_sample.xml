@@ -4,4 +4,4 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.mvpstarter.sample.ui.detail.MapsSampleActivity" />
+    tools:context="io.mvpstarter.sample.features.detail.MapsSampleActivity" />

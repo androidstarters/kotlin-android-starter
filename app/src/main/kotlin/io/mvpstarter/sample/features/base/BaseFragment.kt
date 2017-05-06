@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.base
+package io.mvpstarter.sample.features.base
 
 import io.mvpstarter.sample.MvpStarterApplication
 import io.mvpstarter.sample.injection.component.ConfigPersistentComponent

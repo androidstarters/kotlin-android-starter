@@ -1,7 +1,7 @@
-package io.mvpstarter.sample.ui.detail
+package io.mvpstarter.sample.features.detail
 
 import io.mvpstarter.sample.R
-import io.mvpstarter.sample.ui.base.BaseActivity
+import io.mvpstarter.sample.features.base.BaseActivity
 import android.os.Bundle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

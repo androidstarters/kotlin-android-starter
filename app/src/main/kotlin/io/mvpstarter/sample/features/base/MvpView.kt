@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.base
+package io.mvpstarter.sample.features.base
 
 
 /**
