@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.mvpstarter.sample">
+    package="io.mvpstarter.sample">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,14 +12,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".MvpStarterApplication"
+        android:name="io.mvpstarter.sample.MvpStarterApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="io.mvpstarter.sample.ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name="io.mvpstarter.sample.ui.detail.DetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!--
@@ -45,7 +45,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.detail.MapsSampleActivity"
+            android:name="io.mvpstarter.sample.ui.detail.MapsSampleActivity"
             android:label="@string/title_activity_maps_sample" />
     </application>
 
