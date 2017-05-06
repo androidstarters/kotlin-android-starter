@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: '../config/quality/quality.gradle'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'jacoco'
 //apply plugin: 'io.fabric'
 
@@ -95,12 +94,8 @@ configurations.all {
     resolutionStrategy {
         force 'com.squareup.okio:okio:1.11.0'
         force "com.squareup.okhttp3:okhttp:3.5.0"
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-3'
     }
-}
-
-retrolambda {
-    jvmArgs '-noverify'
-    incremental true
 }
 
 apply from: 'dependencies.gradle'
@@ -140,7 +135,6 @@ dependencies {
     testCompile unitTestLibs
     androidTestCompile androidTestsLibs
 
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     testCompile "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
