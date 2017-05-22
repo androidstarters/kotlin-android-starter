@@ -1,15 +1,15 @@
 package io.mvpstarter.sample
 
+import android.content.Context
+import android.support.multidex.MultiDexApplication
+import com.facebook.stetho.Stetho
+import com.squareup.leakcanary.LeakCanary
 import io.mvpstarter.sample.injection.component.ApplicationComponent
 import io.mvpstarter.sample.injection.component.DaggerApplicationComponent
 import io.mvpstarter.sample.injection.module.ApplicationModule
-import android.app.Application
-import android.content.Context
-import com.facebook.stetho.Stetho
-import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
-class MvpStarterApplication : Application() {
+class MvpStarterApplication : MultiDexApplication() {
 
     internal var mApplicationComponent: ApplicationComponent? = null
 
