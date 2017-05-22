@@ -30,6 +30,8 @@ android {
 
         buildConfigField("String", "POKEAPI_API_URL",
                 "\"${PokeapiApiUrl}\"")
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -102,29 +104,30 @@ apply from: 'dependencies.gradle'
 
 dependencies {
 
-    compile supportLibs
-    compile networkLibs
-    compile rxJavaLibs
-    compile googlePlayLibs
+    implementation supportLibs
+    implementation networkLibs
+    implementation rxJavaLibs
+    implementation googlePlayLibs
+    implementation 'com.android.support:multidex:1.0.1'
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile('com.github.bumptech.glide:okhttp3-integration:1.4.0') {
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation('com.github.bumptech.glide:okhttp3-integration:1.4.0') {
         exclude group: 'glide-parent'
     }
 
     //RxPermission for easy runtime permission management
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
 
-    compile "com.jakewharton:butterknife:$versions.butterKnife"
-    compile "com.jakewharton.timber:timber:4.5.1"
-    compile "com.facebook.stetho:stetho-okhttp3:1.4.2"
+    implementation "com.jakewharton:butterknife:$versions.butterKnife"
+    implementation "com.jakewharton.timber:timber:4.5.1"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.4.2"
 
-    compile "com.google.dagger:dagger:$versions.dagger"
-    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
 
-    debugCompile leakCannary
-    releaseCompile leakCannary
-    testCompile leakCannary
+    debugImplementation leakCannary
+    releaseImplementation leakCannary
+    testImplementation leakCannary
 
     // APT dependencies
     kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
@@ -132,13 +135,13 @@ dependencies {
     kaptTest daggerCompiler
     kaptAndroidTest daggerCompiler
 
-    testCompile unitTestLibs
-    androidTestCompile androidTestsLibs
+    testImplementation unitTestLibs
+    androidTestImplementation androidTestsLibs
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    testCompile "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
-    testCompile "org.jetbrains.kotlin:kotlin-test-junit:1.1.2-2"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.1.2-2"
 }
 
 // Log out test results to console
