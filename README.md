@@ -22,8 +22,6 @@ An MVP Boilerplate to save me having to create the same project over from scratc
 - [Espresso](https://google.github.io/android-testing-support-library/) for UI tests
 - [Robolectric](http://robolectric.org/) for framework specific unit tests
 - [Mockito](http://mockito.org/)
-- [Checkstyle](http://checkstyle.sourceforge.net/), [PMD](https://pmd.github.io/) and [Findbugs](http://findbugs.sourceforge.net/) for code analysis
-
 
 ## Create new project using yeoman [generator-android-mvp-starter](https://github.com/ravidsrk/generator-android-mvp-starter)
 ```bash
