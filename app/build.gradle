@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply from: '../config/quality/quality.gradle'
 apply plugin: 'jacoco'
 //apply plugin: 'io.fabric'
 
@@ -18,7 +17,6 @@ android {
 
     defaultConfig {
         defaultPublishConfig 'debug'
-        publishNonDefault true
 
         applicationId "in.mvpstarter.sample"
         minSdkVersion 18
