@@ -36,13 +36,13 @@ constructor() : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val pokemon = mPokemon!![position]
+        val pokemon = mPokemon?.get(position)
         holder.mPokemon = pokemon
-        holder.nameText!!.text = String.format("%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1))
+        holder.nameText?.text = String.format("%s%s", pokemon?.substring(0, 1)?.toUpperCase(), pokemon?.substring(1))
     }
 
     override fun getItemCount(): Int {
-        return mPokemon!!.size
+        return mPokemon?.size as Int
     }
 
     interface ClickListener {
@@ -56,7 +56,7 @@ constructor() : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
         init {
             ButterKnife.bind(this, itemView)
-            itemView.setOnClickListener { if (mClickListener != null) mClickListener!!.onPokemonClick(mPokemon as String) }
+            itemView.setOnClickListener { if (mClickListener != null) mClickListener?.onPokemonClick(mPokemon as String) }
         }
     }
 }

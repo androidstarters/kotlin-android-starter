@@ -47,8 +47,8 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(layout, container, false)
-        ButterKnife.bind(this, view)
+        val view: View? = inflater?.inflate(layout, container, false)
+        ButterKnife.bind(this, view as View)
         return view
     }
 
@@ -56,7 +56,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState!!.putLong(KEY_FRAGMENT_ID, mFragmentId)
+        outState?.putLong(KEY_FRAGMENT_ID, mFragmentId)
     }
 
     override fun onDestroy() {

@@ -39,7 +39,7 @@ class RxIdlingResource : IdlingResource {
         Timber.i("Active subscriptions count decreased to %d", count)
         if (isIdleNow) {
             Timber.i("There is no active subscriptions, transitioning to Idle")
-            mResourceCallback!!.onTransitionToIdle()
+            mResourceCallback?.onTransitionToIdle()
         }
     }
 

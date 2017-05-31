@@ -43,7 +43,7 @@ class StatisticView : RelativeLayout {
 
     @SuppressLint("SetTextI18n")
     fun setStat(statistic: Statistic) {
-        mNameText!!.text = statistic.stat!!.name.substring(0, 1).toUpperCase() + statistic.stat!!.name.substring(1)
-        mStatProgress!!.progress = statistic.baseStat
+        mNameText?.text = statistic.stat?.name?.substring(0, 1)?.toUpperCase() + statistic.stat?.name?.substring(1)
+        mStatProgress?.progress = statistic.baseStat
     }
 }

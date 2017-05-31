@@ -37,10 +37,10 @@ class DataManagerTest {
         `when`(mMockMvpStarterService.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse))
 
-        mDataManager!!.getPokemonList(10)
-                .test()
-                .assertComplete()
-                .assertValue(TestDataFactory.makePokemonNameList(namedResourceList))
+        mDataManager?.getPokemonList(10)
+                ?.test()
+                ?.assertComplete()
+                ?.assertValue(TestDataFactory.makePokemonNameList(namedResourceList))
     }
 
     @Test
@@ -50,9 +50,9 @@ class DataManagerTest {
         `when`(mMockMvpStarterService.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
-        mDataManager!!.getPokemon(name)
-                .test()
-                .assertComplete()
-                .assertValue(pokemon)
+        mDataManager?.getPokemon(name)
+                ?.test()
+                ?.assertComplete()
+                ?.assertValue(pokemon)
     }
 }

@@ -33,15 +33,15 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
 
         setSupportActionBar(mToolbar)
 
-        mSwipeRefreshLayout!!.setProgressBackgroundColorSchemeResource(R.color.primary)
-        mSwipeRefreshLayout!!.setColorSchemeResources(R.color.white)
-        mSwipeRefreshLayout!!.setOnRefreshListener { mMainPresenter.getPokemon(POKEMON_COUNT) }
+        mSwipeRefreshLayout?.setProgressBackgroundColorSchemeResource(R.color.primary)
+        mSwipeRefreshLayout?.setColorSchemeResources(R.color.white)
+        mSwipeRefreshLayout?.setOnRefreshListener { mMainPresenter.getPokemon(POKEMON_COUNT) }
 
         mPokemonAdapter.setClickListener(this)
-        mPokemonRecycler!!.layoutManager = LinearLayoutManager(this)
-        mPokemonRecycler!!.adapter = mPokemonAdapter
+        mPokemonRecycler?.layoutManager = LinearLayoutManager(this)
+        mPokemonRecycler?.adapter = mPokemonAdapter
 
-        mErrorView!!.setErrorListener(this)
+        mErrorView?.setErrorListener(this)
 
         mMainPresenter.getPokemon(POKEMON_COUNT)
     }
@@ -58,32 +58,32 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
         mPokemonAdapter.setPokemon(pokemon)
         mPokemonAdapter.notifyDataSetChanged()
 
-        mPokemonRecycler!!.visibility = View.VISIBLE
-        mSwipeRefreshLayout!!.visibility = View.VISIBLE
+        mPokemonRecycler?.visibility = View.VISIBLE
+        mSwipeRefreshLayout?.visibility = View.VISIBLE
     }
 
     override fun showProgress(show: Boolean) {
         if (show) {
-            if (mPokemonRecycler!!.visibility == View.VISIBLE && mPokemonAdapter.itemCount > 0) {
-                mSwipeRefreshLayout!!.isRefreshing = true
+            if (mPokemonRecycler?.visibility == View.VISIBLE && mPokemonAdapter.itemCount > 0) {
+                mSwipeRefreshLayout?.isRefreshing = true
             } else {
-                mProgress!!.visibility = View.VISIBLE
+                mProgress?.visibility = View.VISIBLE
 
-                mPokemonRecycler!!.visibility = View.GONE
-                mSwipeRefreshLayout!!.visibility = View.GONE
+                mPokemonRecycler?.visibility = View.GONE
+                mSwipeRefreshLayout?.visibility = View.GONE
             }
 
-            mErrorView!!.visibility = View.GONE
+            mErrorView?.visibility = View.GONE
         } else {
-            mSwipeRefreshLayout!!.isRefreshing = false
-            mProgress!!.visibility = View.GONE
+            mSwipeRefreshLayout?.isRefreshing = false
+            mProgress?.visibility = View.GONE
         }
     }
 
     override fun showError(error: Throwable) {
-        mPokemonRecycler!!.visibility = View.GONE
-        mSwipeRefreshLayout!!.visibility = View.GONE
-        mErrorView!!.visibility = View.VISIBLE
+        mPokemonRecycler?.visibility = View.GONE
+        mSwipeRefreshLayout?.visibility = View.GONE
+        mErrorView?.visibility = View.VISIBLE
         Timber.e(error, "There was an error retrieving the pokemon")
     }
 
