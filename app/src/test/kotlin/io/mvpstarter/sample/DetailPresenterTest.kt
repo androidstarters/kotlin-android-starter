@@ -36,12 +36,12 @@ class DetailPresenterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         mDetailPresenter = DetailPresenter(mMockDataManager)
-        mDetailPresenter!!.attachView(mMockDetailMvpView)
+        mDetailPresenter?.attachView(mMockDetailMvpView)
     }
 
     @After
     fun tearDown() {
-        mDetailPresenter!!.detachView()
+        mDetailPresenter?.detachView()
     }
 
     @Test
@@ -51,7 +51,7 @@ class DetailPresenterTest {
         `when`(mMockDataManager.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
-        mDetailPresenter!!.getPokemon(anyString())
+        mDetailPresenter?.getPokemon(anyString())
 
         verify<DetailMvpView>(mMockDetailMvpView, times(2)).showProgress(anyBoolean())
         verify<DetailMvpView>(mMockDetailMvpView).showPokemon(pokemon)
@@ -64,7 +64,7 @@ class DetailPresenterTest {
         `when`(mMockDataManager.getPokemon("id"))
                 .thenReturn(Single.error<Pokemon>(RuntimeException()))
 
-        mDetailPresenter!!.getPokemon("id")
+        mDetailPresenter?.getPokemon("id")
 
         verify<DetailMvpView>(mMockDetailMvpView, times(2)).showProgress(anyBoolean())
 //        verify<DetailMvpView>(mMockDetailMvpView).showError(any(Throwable::class.java))

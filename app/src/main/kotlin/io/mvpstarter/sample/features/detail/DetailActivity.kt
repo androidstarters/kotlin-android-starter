@@ -45,11 +45,11 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         setSupportActionBar(mToolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        title = mPokemonName!!.substring(0, 1).toUpperCase() + mPokemonName!!.substring(1)
+        title = mPokemonName?.substring(0, 1)?.toUpperCase() + mPokemonName?.substring(1)
 
-        mErrorView!!.setErrorListener(this)
+        mErrorView?.setErrorListener(this)
 
-        mDetailPresenter.getPokemon(mPokemonName!!)
+        mDetailPresenter.getPokemon(mPokemonName as String)
     }
 
     override val layout: Int
@@ -59,30 +59,30 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         if (pokemon.sprites.frontDefault != null) {
             Glide.with(this)
                     .load(pokemon.sprites.frontDefault)
-                    .into(mPokemonImage!!)
+                    .into(mPokemonImage)
         }
-        mPokemonLayout!!.visibility = View.VISIBLE
+        mPokemonLayout?.visibility = View.VISIBLE
     }
 
     override fun showStat(statistic: Statistic) {
         val statisticView = StatisticView(this)
         statisticView.setStat(statistic)
-        mStatLayout!!.addView(statisticView)
+        mStatLayout?.addView(statisticView)
     }
 
     override fun showProgress(show: Boolean) {
-        mErrorView!!.visibility = View.GONE
-        mProgress!!.visibility = if (show) View.VISIBLE else View.GONE
+        mErrorView?.visibility = View.GONE
+        mProgress?.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showError(error: Throwable) {
-        mPokemonLayout!!.visibility = View.GONE
-        mErrorView!!.visibility = View.VISIBLE
+        mPokemonLayout?.visibility = View.GONE
+        mErrorView?.visibility = View.VISIBLE
         Timber.e(error, "There was a problem retrieving the pokemon...")
     }
 
     override fun onReloadData() {
-        mDetailPresenter.getPokemon(mPokemonName!!)
+        mDetailPresenter.getPokemon(mPokemonName as String)
     }
 
     override fun onDestroy() {
