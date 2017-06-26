@@ -18,7 +18,7 @@ android {
     defaultConfig {
         defaultPublishConfig 'debug'
 
-        applicationId "in.mvpstarter.sample"
+        applicationId "io.mvpstarter.sample"
         minSdkVersion 18
         targetSdkVersion 26
         testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
