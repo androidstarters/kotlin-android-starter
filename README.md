@@ -6,7 +6,7 @@
 An MVP Boilerplate to save me having to create the same project over from scratch every time! :)
 <p align="center">
   <img src="http://g.recordit.co/L5selg7aIv.gif" width="250">
-  <img src="http://g.recordit.co/7JNqTQMwLS.gif">
+  <img src="http://g.recordit.co/xt4o5wTySc.gif">
 </p>
 
 ## This project uses:
