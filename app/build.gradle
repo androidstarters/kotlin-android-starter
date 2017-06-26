@@ -39,19 +39,14 @@ android {
     }
 
     sourceSets {
-        def commonTestDir = 'src/commonTest/kotlin'
+        def commonTestDir = 'src/commonTest/java'
         test {
             java.srcDir commonTestDir
         }
         androidTest {
             java.srcDir commonTestDir
         }
-
-        androidTest.java.srcDirs += 'src/androidTest/kotlin'
-        main.java.srcDirs += 'src/main/kotlin'
-        test.java.srcDirs += 'src/test/kotlin'
     }
-
 
     lintOptions {
         textOutput "stdout"
