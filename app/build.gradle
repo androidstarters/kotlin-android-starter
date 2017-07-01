@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.ben-manes.versions'
 //apply plugin: 'io.fabric'
 
 android {
@@ -65,6 +66,7 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/rxjava.properties'
+        exclude 'META-INF/MANIFEST.MF'
     }
 
     compileOptions {
@@ -107,7 +109,7 @@ dependencies {
 
     implementation "com.jakewharton:butterknife:$versions.butterKnife"
     implementation "com.jakewharton.timber:timber:4.5.1"
-    implementation "com.facebook.stetho:stetho-okhttp3:1.4.2"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
 
     implementation "com.google.dagger:dagger:$versions.dagger"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
@@ -127,8 +129,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    testImplementation "org.jetbrains.kotlin:kotlin-test:1.1.2-2"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:1.1.2-2"
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
 // Log out test results to console
