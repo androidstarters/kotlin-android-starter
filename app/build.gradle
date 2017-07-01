@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco'
 //apply plugin: 'io.fabric'
 
 android {
@@ -76,11 +75,6 @@ android {
     testOptions {
         unitTests {
             returnDefaultValues = true
-            all {
-                jacoco {
-                    includeNoLocationClasses = true
-                }
-            }
         }
     }
 }
