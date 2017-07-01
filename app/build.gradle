@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.ben-manes.versions'
 //apply plugin: 'io.fabric'
 
 android {
@@ -16,10 +15,9 @@ android {
     }
 
     defaultConfig {
-        defaultPublishConfig 'debug'
 
         applicationId "io.mvpstarter.sample"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 26
         testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
         versionCode 1000
@@ -85,7 +83,6 @@ configurations.all {
     resolutionStrategy {
         force 'com.squareup.okio:okio:1.11.0'
         force "com.squareup.okhttp3:okhttp:3.5.0"
-        force 'org.jetbrains.kotlin:kotlin-stdlib:1.1.2-3'
     }
 }
 
@@ -97,7 +94,7 @@ dependencies {
     implementation networkLibs
     implementation rxJavaLibs
     implementation googlePlayLibs
-    implementation 'com.android.support:multidex:1.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation('com.github.bumptech.glide:okhttp3-integration:1.4.0') {
@@ -106,10 +103,9 @@ dependencies {
 
     //RxPermission for easy runtime permission management
     implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
-
     implementation "com.jakewharton:butterknife:$versions.butterKnife"
-    implementation "com.jakewharton.timber:timber:4.5.1"
-    implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+    implementation "com.facebook.stetho:stetho-okhttp3:$versions.stethOkhttp"
 
     implementation "com.google.dagger:dagger:$versions.dagger"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
@@ -118,7 +114,6 @@ dependencies {
     releaseImplementation leakCannary
     testImplementation leakCannary
 
-    // APT dependencies
     kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
     kapt daggerCompiler
     kaptTest daggerCompiler
@@ -126,11 +121,6 @@ dependencies {
 
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
-    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 }
 
 // Log out test results to console
