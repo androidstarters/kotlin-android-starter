@@ -1,15 +1,15 @@
 package io.mvpstarter.sample.features.base
 
-import io.mvpstarter.sample.MvpStarterApplication
-import io.mvpstarter.sample.injection.component.ActivityComponent
-import io.mvpstarter.sample.injection.component.ConfigPersistentComponent
-import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent
-import io.mvpstarter.sample.injection.module.ActivityModule
 import android.os.Bundle
 import android.support.v4.util.LongSparseArray
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import butterknife.ButterKnife
+import io.mvpstarter.sample.MvpStarterApplication
+import io.mvpstarter.sample.injection.component.ActivityComponent
+import io.mvpstarter.sample.injection.component.ConfigPersistentComponent
+import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent
+import io.mvpstarter.sample.injection.module.ActivityModule
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 
@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicLong
 abstract class BaseActivity : AppCompatActivity() {
 
     private var mActivityComponent: ActivityComponent? = null
-    private var mActivityId: Long = 0
+    private var mActivityId = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (sComponentsArray.get(mActivityId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mActivityId)
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication[this].component)
+                    .appComponent(MvpStarterApplication[this].component)
                     .build()
             sComponentsArray.put(mActivityId, configPersistentComponent)
         } else {

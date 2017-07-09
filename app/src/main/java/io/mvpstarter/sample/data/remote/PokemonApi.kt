@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MvpStarterService {
+interface PokemonApi {
 
     @GET("pokemon")
     fun getPokemonList(@Query("limit") limit: Int): Single<PokemonListResponse>

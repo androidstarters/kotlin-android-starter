@@ -3,7 +3,7 @@ package io.mvpstarter.sample
 import io.mvpstarter.sample.common.TestDataFactory
 import io.mvpstarter.sample.data.DataManager
 import io.mvpstarter.sample.data.model.PokemonListResponse
-import io.mvpstarter.sample.data.remote.MvpStarterService
+import io.mvpstarter.sample.data.remote.PokemonApi
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule
 import io.reactivex.Single
 import org.junit.Before
@@ -20,13 +20,13 @@ import org.mockito.junit.MockitoJUnitRunner
 class DataManagerTest {
 
     @Rule @JvmField val mOverrideSchedulersRule = RxSchedulersOverrideRule()
-    @Mock lateinit var mMockMvpStarterService: MvpStarterService
+    @Mock lateinit var mMockPokemonApi: PokemonApi
 
     private var mDataManager: DataManager? = null
 
     @Before
     fun setUp() {
-        mDataManager = DataManager(mMockMvpStarterService)
+        mDataManager = DataManager(mMockPokemonApi)
     }
 
     @Test
@@ -34,7 +34,7 @@ class DataManagerTest {
         val namedResourceList = TestDataFactory.makeNamedResourceList(5)
         val pokemonListResponse = PokemonListResponse(namedResourceList)
 
-        `when`(mMockMvpStarterService.getPokemonList(anyInt()))
+        `when`(mMockPokemonApi.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse))
 
         mDataManager?.getPokemonList(10)
@@ -47,7 +47,7 @@ class DataManagerTest {
     fun getPokemonCompletesAndEmitsPokemon() {
         val name = "charmander"
         val pokemon = TestDataFactory.makePokemon(name)
-        `when`(mMockMvpStarterService.getPokemon(anyString()))
+        `when`(mMockPokemonApi.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
         mDataManager?.getPokemon(name)
