@@ -1,10 +1,5 @@
 package io.mvpstarter.sample.features.base
 
-import io.mvpstarter.sample.MvpStarterApplication
-import io.mvpstarter.sample.injection.component.ConfigPersistentComponent
-import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent
-import io.mvpstarter.sample.injection.component.FragmentComponent
-import io.mvpstarter.sample.injection.module.FragmentModule
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.util.LongSparseArray
@@ -12,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
+import io.mvpstarter.sample.MvpStarterApplication
+import io.mvpstarter.sample.injection.component.ConfigPersistentComponent
+import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent
+import io.mvpstarter.sample.injection.component.FragmentComponent
+import io.mvpstarter.sample.injection.module.FragmentModule
 import timber.log.Timber
 import java.util.concurrent.atomic.AtomicLong
 
@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicLong
 abstract class BaseFragment : Fragment() {
 
     private var mFragmentComponent: FragmentComponent? = null
-    private var mFragmentId: Long = 0
+    private var mFragmentId = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ abstract class BaseFragment : Fragment() {
         if (sComponentsArray.get(mFragmentId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mFragmentId)
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication[activity].component)
+                    .appComponent(MvpStarterApplication[activity].component)
                     .build()
             sComponentsArray.put(mFragmentId, configPersistentComponent)
         } else {

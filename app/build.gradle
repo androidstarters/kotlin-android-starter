@@ -107,6 +107,16 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$versions.timber"
     implementation "com.facebook.stetho:stetho-okhttp3:$versions.stethOkhttp"
 
+    debugImplementation 'com.readystatesoftware.chuck:library:1.0.4'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.0.4'
+
+    debugImplementation('com.github.ajitsing:sherlock:1.0.2@aar') {
+        transitive = true
+    }
+    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.2@aar')
+
+    implementation 'com.tspoon.traceur:traceur:1.0.1'
+
     implementation "com.google.dagger:dagger:$versions.dagger"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
 
