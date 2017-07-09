@@ -1,12 +1,12 @@
 package io.mvpstarter.sample.common.injection.module
 
-import io.mvpstarter.sample.data.DataManager
-import io.mvpstarter.sample.data.remote.MvpStarterService
-import io.mvpstarter.sample.injection.ApplicationContext
 import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import io.mvpstarter.sample.data.DataManager
+import io.mvpstarter.sample.data.remote.PokemonApi
+import io.mvpstarter.sample.injection.ApplicationContext
 import org.mockito.Mockito.mock
 import javax.inject.Singleton
 
@@ -41,8 +41,8 @@ class ApplicationTestModule(private val mApplication: Application) {
 
     @Provides
     @Singleton
-    internal fun provideMvpBoilerplateService(): MvpStarterService {
-        return mock(MvpStarterService::class.java)
+    internal fun provideMvpBoilerplateService(): PokemonApi {
+        return mock(PokemonApi::class.java)
     }
 
 }
