@@ -14,7 +14,7 @@ import timber.log.Timber
 
 class MvpStarterApplication : MultiDexApplication() {
 
-    internal var mAppComponent: AppComponent? = null
+    internal var appComponent: AppComponent? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -31,16 +31,16 @@ class MvpStarterApplication : MultiDexApplication() {
     // Needed to replace the component with a test specific one
     var component: AppComponent
         get() {
-            if (mAppComponent == null) {
-                mAppComponent = DaggerAppComponent.builder()
+            if (appComponent == null) {
+                appComponent = DaggerAppComponent.builder()
                         .appModule(AppModule(this))
                         .networkModule(NetworkModule(this))
                         .build()
             }
-            return mAppComponent as AppComponent
+            return appComponent as AppComponent
         }
         set(appComponent) {
-            mAppComponent = appComponent
+            this.appComponent = appComponent
         }
 
     companion object {

@@ -23,51 +23,51 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MainPresenterTest {
 
-    @Mock lateinit var mMockMainMvpView: MainMvpView
-    @Mock lateinit var mMockDataManager: DataManager
-    private var mMainPresenter: MainPresenter? = null
+    @Mock lateinit var mockMainMvpView: MainMvpView
+    @Mock lateinit var mockDataManager: DataManager
+    private var mainPresenter: MainPresenter? = null
 
     @JvmField
     @Rule
-    val mOverrideSchedulersRule = RxSchedulersOverrideRule()
+    val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     @Before
     fun setUp() {
-        mMainPresenter = MainPresenter(mMockDataManager)
-        mMainPresenter?.attachView(mMockMainMvpView)
+        mainPresenter = MainPresenter(mockDataManager)
+        mainPresenter?.attachView(mockMainMvpView)
     }
 
     @After
     fun tearDown() {
-        mMainPresenter?.detachView()
+        mainPresenter?.detachView()
     }
 
     @Test
     @Throws(Exception::class)
     fun getPokemonReturnsPokemonNames() {
         val pokemonList = TestDataFactory.makePokemonNamesList(10)
-        `when`(mMockDataManager.getPokemonList(10))
+        `when`(mockDataManager.getPokemonList(10))
                 .thenReturn(Single.just(pokemonList))
 
-        mMainPresenter?.getPokemon(10)
+        mainPresenter?.getPokemon(10)
 
-        verify<MainMvpView>(mMockMainMvpView, times(2)).showProgress(anyBoolean())
-        verify<MainMvpView>(mMockMainMvpView).showPokemon(pokemonList)
-        verify<MainMvpView>(mMockMainMvpView, never()).showError(RuntimeException())
+        verify<MainMvpView>(mockMainMvpView, times(2)).showProgress(anyBoolean())
+        verify<MainMvpView>(mockMainMvpView).showPokemon(pokemonList)
+        verify<MainMvpView>(mockMainMvpView, never()).showError(RuntimeException())
 
     }
 
     @Test
     @Throws(Exception::class)
     fun getPokemonReturnsError() {
-        `when`(mMockDataManager.getPokemonList(10))
+        `when`(mockDataManager.getPokemonList(10))
                 .thenReturn(Single.error<List<String>>(RuntimeException()))
 
-        mMainPresenter?.getPokemon(10)
+        mainPresenter?.getPokemon(10)
 
-        verify<MainMvpView>(mMockMainMvpView, times(2)).showProgress(anyBoolean())
-//        verify<MainMvpView>(mMockMainMvpView).showError(RuntimeException())
-        verify<MainMvpView>(mMockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList<String>())
+        verify<MainMvpView>(mockMainMvpView, times(2)).showProgress(anyBoolean())
+//        verify<MainMvpView>(mockMainMvpView).showError(RuntimeException())
+        verify<MainMvpView>(mockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList<String>())
     }
 
 }

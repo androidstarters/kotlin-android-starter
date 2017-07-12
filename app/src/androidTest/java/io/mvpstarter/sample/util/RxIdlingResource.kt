@@ -14,32 +14,32 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class RxIdlingResource : IdlingResource {
 
-    private val mActiveSubscriptionsCount = AtomicInteger(0)
-    private var mResourceCallback: IdlingResource.ResourceCallback? = null
+    private val activeSubscriptionsCount = AtomicInteger(0)
+    private var resourceCallback: IdlingResource.ResourceCallback? = null
 
     override fun getName(): String {
         return javaClass.simpleName
     }
 
     override fun isIdleNow(): Boolean {
-        return mActiveSubscriptionsCount.get() <= 0
+        return activeSubscriptionsCount.get() <= 0
     }
 
     override fun registerIdleTransitionCallback(callback: IdlingResource.ResourceCallback) {
-        mResourceCallback = callback
+        resourceCallback = callback
     }
 
     fun incrementActiveSubscriptionsCount() {
-        val count = mActiveSubscriptionsCount.incrementAndGet()
+        val count = activeSubscriptionsCount.incrementAndGet()
         Timber.i("Active subscriptions count increased to %d", count)
     }
 
     fun decrementActiveSubscriptionsCount() {
-        val count = mActiveSubscriptionsCount.decrementAndGet()
+        val count = activeSubscriptionsCount.decrementAndGet()
         Timber.i("Active subscriptions count decreased to %d", count)
         if (isIdleNow) {
             Timber.i("There is no active subscriptions, transitioning to Idle")
-            mResourceCallback?.onTransitionToIdle()
+            resourceCallback?.onTransitionToIdle()
         }
     }
 

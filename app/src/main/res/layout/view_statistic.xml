@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/pokemon_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -20,7 +20,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="12dp"
-        android:layout_below="@+id/text_name"
+        android:layout_below="@+id/pokemon_name"
         android:layout_marginBottom="16dp"
         android:indeterminate="false"
         android:indeterminateOnly="false" />

@@ -1,14 +1,14 @@
 package io.mvpstarter.sample.features.main
 
 import io.mvpstarter.sample.data.DataManager
-import io.mvpstarter.sample.injection.ConfigPersistent
 import io.mvpstarter.sample.features.base.BasePresenter
+import io.mvpstarter.sample.injection.ConfigPersistent
 import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils
 import javax.inject.Inject
 
 @ConfigPersistent
 class MainPresenter @Inject
-constructor(private val mDataManager: DataManager) : BasePresenter<MainMvpView>() {
+constructor(private val dataManager: DataManager) : BasePresenter<MainMvpView>() {
 
     override fun attachView(mvpView: MainMvpView) {
         super.attachView(mvpView)
@@ -17,7 +17,7 @@ constructor(private val mDataManager: DataManager) : BasePresenter<MainMvpView>(
     fun getPokemon(limit: Int) {
         checkViewAttached()
         mvpView?.showProgress(true)
-        mDataManager.getPokemonList(limit)
+        dataManager.getPokemonList(limit)
                 .compose(SchedulerUtils.ioToMain<List<String>>())
                 .subscribe({ pokemons ->
                     mvpView?.showProgress(false)

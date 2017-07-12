@@ -15,18 +15,18 @@ import javax.inject.Singleton
  * This allows injecting mocks if necessary.
  */
 @Module
-class ApplicationTestModule(private val mApplication: Application) {
+class ApplicationTestModule(private val application: Application) {
 
     @Provides
     @Singleton
     internal fun provideApplication(): Application {
-        return mApplication
+        return application
     }
 
     @Provides
     @ApplicationContext
     internal fun provideContext(): Context {
-        return mApplication
+        return application
     }
 
     /*************

@@ -1,7 +1,5 @@
 package io.mvpstarter.sample.features.detail
 
-import io.mvpstarter.sample.R
-import io.mvpstarter.sample.features.base.BaseActivity
 import android.os.Bundle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -9,10 +7,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import io.mvpstarter.sample.R
+import io.mvpstarter.sample.features.base.BaseActivity
 
 class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
 
-    private var mMap: GoogleMap? = null
+    private var map: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        map = googleMap
 
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)

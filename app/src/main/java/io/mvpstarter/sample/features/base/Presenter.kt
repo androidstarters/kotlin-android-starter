@@ -4,7 +4,7 @@ package io.mvpstarter.sample.features.base
  * Every presenter in the app must either implement this interface or extend BasePresenter
  * indicating the MvpView type that wants to be attached with.
  */
-interface Presenter<V : MvpView> {
+interface Presenter<in V : MvpView> {
 
     fun attachView(mvpView: V)
 

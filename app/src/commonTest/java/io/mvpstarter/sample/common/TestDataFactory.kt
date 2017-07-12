@@ -12,7 +12,7 @@ import java.util.*
  */
 object TestDataFactory {
 
-    private val sRandom = Random()
+    private val random = Random()
 
     fun randomUuid(): String {
         return UUID.randomUUID().toString()
@@ -23,24 +23,18 @@ object TestDataFactory {
     }
 
     fun makePokemonNamesList(count: Int): List<String> {
-        val pokemonList = ArrayList<String>()
-        for (i in 0..count - 1) {
-            pokemonList.add(makePokemon(i.toString()).name)
-        }
+        val pokemonList = (0..count - 1).mapTo(ArrayList<String>()) { makePokemon(it.toString()).name }
         return pokemonList
     }
 
     fun makePokemonNameList(pokemonList: List<NamedResource>): List<String> {
-        val names = ArrayList<String>()
-        for (pokemon in pokemonList) {
-            names.add(pokemon.name)
-        }
+        val names = pokemonList.mapTo(ArrayList<String>()) { it.name }
         return names
     }
 
     fun makeStatistic(): Statistic {
         val statistic = Statistic()
-        statistic.baseStat = sRandom.nextInt()
+        statistic.baseStat = random.nextInt()
         statistic.stat = makeNamedResource(randomUuid())
         return statistic
     }
