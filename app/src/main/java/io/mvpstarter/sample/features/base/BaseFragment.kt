@@ -22,27 +22,33 @@ import java.util.concurrent.atomic.AtomicLong
  */
 abstract class BaseFragment : Fragment() {
 
-    private var mFragmentComponent: FragmentComponent? = null
-    private var mFragmentId = 0L
+    private var fragmentComponent: FragmentComponent? = null
+    private var fragmentId = 0L
+
+    companion object {
+        private val KEY_FRAGMENT_ID = "KEY_FRAGMENT_ID"
+        private val componentsArray = LongSparseArray<ConfigPersistentComponent>()
+        private val NEXT_ID = AtomicLong(0)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Create the FragmentComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
-        mFragmentId = savedInstanceState?.getLong(KEY_FRAGMENT_ID) ?: NEXT_ID.getAndIncrement()
+        fragmentId = savedInstanceState?.getLong(KEY_FRAGMENT_ID) ?: NEXT_ID.getAndIncrement()
         val configPersistentComponent: ConfigPersistentComponent
-        if (sComponentsArray.get(mFragmentId) == null) {
-            Timber.i("Creating new ConfigPersistentComponent id=%d", mFragmentId)
+        if (componentsArray.get(fragmentId) == null) {
+            Timber.i("Creating new ConfigPersistentComponent id=%d", fragmentId)
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .appComponent(MvpStarterApplication[activity].component)
                     .build()
-            sComponentsArray.put(mFragmentId, configPersistentComponent)
+            componentsArray.put(fragmentId, configPersistentComponent)
         } else {
-            Timber.i("Reusing ConfigPersistentComponent id=%d", mFragmentId)
-            configPersistentComponent = sComponentsArray.get(mFragmentId)
+            Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId)
+            configPersistentComponent = componentsArray.get(fragmentId)
         }
-        mFragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
+        fragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -56,25 +62,19 @@ abstract class BaseFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putLong(KEY_FRAGMENT_ID, mFragmentId)
+        outState?.putLong(KEY_FRAGMENT_ID, fragmentId)
     }
 
     override fun onDestroy() {
         if (!activity.isChangingConfigurations) {
-            Timber.i("Clearing ConfigPersistentComponent id=%d", mFragmentId)
-            sComponentsArray.remove(mFragmentId)
+            Timber.i("Clearing ConfigPersistentComponent id=%d", fragmentId)
+            componentsArray.remove(fragmentId)
         }
         super.onDestroy()
     }
 
     fun fragmentComponent(): FragmentComponent {
-        return mFragmentComponent as FragmentComponent
+        return fragmentComponent as FragmentComponent
     }
 
-    companion object {
-
-        private val KEY_FRAGMENT_ID = "KEY_FRAGMENT_ID"
-        private val sComponentsArray = LongSparseArray<ConfigPersistentComponent>()
-        private val NEXT_ID = AtomicLong(0)
-    }
 }

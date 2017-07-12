@@ -25,50 +25,50 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class DetailPresenterTest {
 
-    @Mock lateinit var mMockDetailMvpView: DetailMvpView
-    @Mock lateinit var mMockDataManager: DataManager
-    private var mDetailPresenter: DetailPresenter? = null
+    @Mock lateinit var mockDetailMvpView: DetailMvpView
+    @Mock lateinit var mockDataManager: DataManager
+    private var detailPresenter: DetailPresenter? = null
 
     @JvmField
-    @Rule val mOverrideSchedulersRule = RxSchedulersOverrideRule()
+    @Rule val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        mDetailPresenter = DetailPresenter(mMockDataManager)
-        mDetailPresenter?.attachView(mMockDetailMvpView)
+        detailPresenter = DetailPresenter(mockDataManager)
+        detailPresenter?.attachView(mockDetailMvpView)
     }
 
     @After
     fun tearDown() {
-        mDetailPresenter?.detachView()
+        detailPresenter?.detachView()
     }
 
     @Test
     @Throws(Exception::class)
     fun getPokemonDetailReturnsPokemon() {
         val pokemon = TestDataFactory.makePokemon("id")
-        `when`(mMockDataManager.getPokemon(anyString()))
+        `when`(mockDataManager.getPokemon(anyString()))
                 .thenReturn(Single.just(pokemon))
 
-        mDetailPresenter?.getPokemon(anyString())
+        detailPresenter?.getPokemon(anyString())
 
-        verify<DetailMvpView>(mMockDetailMvpView, times(2)).showProgress(anyBoolean())
-        verify<DetailMvpView>(mMockDetailMvpView).showPokemon(pokemon)
-        verify<DetailMvpView>(mMockDetailMvpView, never()).showError(RuntimeException())
+        verify<DetailMvpView>(mockDetailMvpView, times(2)).showProgress(anyBoolean())
+        verify<DetailMvpView>(mockDetailMvpView).showPokemon(pokemon)
+        verify<DetailMvpView>(mockDetailMvpView, never()).showError(RuntimeException())
     }
 
     @Test
     @Throws(Exception::class)
     fun getPokemonDetailReturnsError() {
-        `when`(mMockDataManager.getPokemon("id"))
+        `when`(mockDataManager.getPokemon("id"))
                 .thenReturn(Single.error<Pokemon>(RuntimeException()))
 
-        mDetailPresenter?.getPokemon("id")
+        detailPresenter?.getPokemon("id")
 
-        verify<DetailMvpView>(mMockDetailMvpView, times(2)).showProgress(anyBoolean())
-//        verify<DetailMvpView>(mMockDetailMvpView).showError(any(Throwable::class.java))
-//        verify<DetailMvpView>(mMockDetailMvpView, never()).showPokemon(any(Pokemon::class.java))
+        verify<DetailMvpView>(mockDetailMvpView, times(2)).showProgress(anyBoolean())
+//        verify<DetailMvpView>(mockDetailMvpView).showError(any(Throwable::class.java))
+//        verify<DetailMvpView>(mockDetailMvpView, never()).showPokemon(any(Pokemon::class.java))
     }
 
 }

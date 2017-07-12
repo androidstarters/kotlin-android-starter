@@ -12,7 +12,7 @@ open class BasePresenter<T : MvpView> : Presenter<T> {
 
     var mvpView: T? = null
         private set
-    private val mCompositeSubscription = CompositeSubscription()
+    private val compositeSubscription = CompositeSubscription()
 
     override fun attachView(mvpView: T) {
         this.mvpView = mvpView
@@ -20,8 +20,8 @@ open class BasePresenter<T : MvpView> : Presenter<T> {
 
     override fun detachView() {
         mvpView = null
-        if (!mCompositeSubscription.isUnsubscribed) {
-            mCompositeSubscription.clear()
+        if (!compositeSubscription.isUnsubscribed) {
+            compositeSubscription.clear()
         }
     }
 
@@ -33,7 +33,7 @@ open class BasePresenter<T : MvpView> : Presenter<T> {
     }
 
     fun addSubscription(subs: Subscription) {
-        mCompositeSubscription.add(subs)
+        compositeSubscription.add(subs)
     }
 
     private class MvpViewNotAttachedException internal constructor() : RuntimeException("Please call Presenter.attachView(MvpView) before" + " requesting data to the Presenter")

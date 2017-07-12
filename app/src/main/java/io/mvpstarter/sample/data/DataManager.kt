@@ -8,10 +8,10 @@ import javax.inject.Singleton
 
 @Singleton
 class DataManager @Inject
-constructor(private val mPokemonApi: PokemonApi) {
+constructor(private val pokemonApi: PokemonApi) {
 
     fun getPokemonList(limit: Int): Single<List<String>> {
-        return mPokemonApi.getPokemonList(limit)
+        return pokemonApi.getPokemonList(limit)
                 .toObservable()
                 .flatMapIterable { (results) -> results }
                 .map { (name) -> name }
@@ -19,7 +19,7 @@ constructor(private val mPokemonApi: PokemonApi) {
     }
 
     fun getPokemon(name: String): Single<Pokemon> {
-        return mPokemonApi.getPokemon(name)
+        return pokemonApi.getPokemon(name)
     }
 
 }

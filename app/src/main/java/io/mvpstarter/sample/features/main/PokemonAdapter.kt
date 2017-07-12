@@ -1,6 +1,5 @@
 package io.mvpstarter.sample.features.main
 
-import io.mvpstarter.sample.R
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,24 +7,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import io.mvpstarter.sample.R
 import javax.inject.Inject
 
 class PokemonAdapter @Inject
 constructor() : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
-    private var mPokemon: List<String>? = null
-    private var mClickListener: ClickListener? = null
+    private var pokemonsList: List<String>
+    private var clickListener: ClickListener? = null
 
     init {
-        mPokemon = emptyList<String>()
+        pokemonsList = emptyList<String>()
     }
 
-    fun setPokemon(pokemon: List<String>) {
-        mPokemon = pokemon
+    fun setPokemon(pokemons: List<String>) {
+        pokemonsList = pokemons
     }
 
     fun setClickListener(clickListener: ClickListener) {
-        mClickListener = clickListener
+        this.clickListener = clickListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
@@ -36,27 +36,37 @@ constructor() : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-        val pokemon = mPokemon?.get(position)
-        holder.mPokemon = pokemon
-        holder.nameText?.text = String.format("%s%s", pokemon?.substring(0, 1)?.toUpperCase(), pokemon?.substring(1))
+        val pokemon = pokemonsList[position]
+        holder.bind(pokemon)
     }
 
     override fun getItemCount(): Int {
-        return mPokemon?.size as Int
+        return pokemonsList.size
     }
 
     interface ClickListener {
         fun onPokemonClick(pokemon: String)
     }
 
-    open inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var mPokemon: String? = null
-        @BindView(R.id.text_name) @JvmField var nameText: TextView? = null
+        lateinit var selectedPokemon: String
+
+        @BindView(R.id.pokemon_name)
+        @JvmField var pokemonName: TextView? = null
 
         init {
             ButterKnife.bind(this, itemView)
-            itemView.setOnClickListener { if (mClickListener != null) mClickListener?.onPokemonClick(mPokemon as String) }
+            itemView.setOnClickListener {
+                clickListener?.onPokemonClick(selectedPokemon)
+            }
+        }
+
+        fun bind(pokemon: String) {
+            selectedPokemon = pokemon
+            pokemonName?.text = String.format("%s%s", pokemon.substring(0, 1).toUpperCase(),
+                    pokemon.substring(1))
         }
     }
+
 }

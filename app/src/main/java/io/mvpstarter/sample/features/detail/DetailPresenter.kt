@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @ConfigPersistent
 class DetailPresenter @Inject
-constructor(private val mDataManager: DataManager) : BasePresenter<DetailMvpView>() {
+constructor(private val dataManager: DataManager) : BasePresenter<DetailMvpView>() {
 
     override fun attachView(mvpView: DetailMvpView) {
         super.attachView(mvpView)
@@ -18,7 +18,7 @@ constructor(private val mDataManager: DataManager) : BasePresenter<DetailMvpView
     fun getPokemon(name: String) {
         checkViewAttached()
         mvpView?.showProgress(true)
-        mDataManager.getPokemon(name)
+        dataManager.getPokemon(name)
                 .compose<Pokemon>(SchedulerUtils.ioToMain<Pokemon>())
                 .subscribe({ pokemon ->
                     // It should be always checked if MvpView (Fragment or Activity) is attached.
