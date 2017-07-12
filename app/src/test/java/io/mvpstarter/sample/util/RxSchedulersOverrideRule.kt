@@ -28,20 +28,20 @@ import java.util.concurrent.Callable
 class RxSchedulersOverrideRule : TestRule {
 
     private val SCHEDULER_INSTANCE = Schedulers.trampoline()
-    private val mSchedulerFunction = Function<Scheduler, Scheduler> { SCHEDULER_INSTANCE }
-    private val mSchedulerFunctionLazy = Function<Callable<Scheduler>, Scheduler> { SCHEDULER_INSTANCE }
+    private val schedulerFunction = Function<Scheduler, Scheduler> { SCHEDULER_INSTANCE }
+    private val schedulerFunctionLazy = Function<Callable<Scheduler>, Scheduler> { SCHEDULER_INSTANCE }
 
     override fun apply(base: Statement, description: Description): Statement {
         return object : Statement() {
             @Throws(Throwable::class)
             override fun evaluate() {
                 RxAndroidPlugins.reset()
-                RxAndroidPlugins.setInitMainThreadSchedulerHandler(mSchedulerFunctionLazy)
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler(schedulerFunctionLazy)
 
                 RxJavaPlugins.reset()
-                RxJavaPlugins.setIoSchedulerHandler(mSchedulerFunction)
-                RxJavaPlugins.setNewThreadSchedulerHandler(mSchedulerFunction)
-                RxJavaPlugins.setComputationSchedulerHandler(mSchedulerFunction)
+                RxJavaPlugins.setIoSchedulerHandler(schedulerFunction)
+                RxJavaPlugins.setNewThreadSchedulerHandler(schedulerFunction)
+                RxJavaPlugins.setComputationSchedulerHandler(schedulerFunction)
 
                 base.evaluate()
 

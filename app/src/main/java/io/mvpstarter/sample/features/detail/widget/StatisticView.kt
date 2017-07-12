@@ -1,7 +1,5 @@
 package io.mvpstarter.sample.features.detail.widget
 
-import io.mvpstarter.sample.R
-import io.mvpstarter.sample.data.model.Statistic
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Context
@@ -13,11 +11,13 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import io.mvpstarter.sample.R
+import io.mvpstarter.sample.data.model.Statistic
 
 class StatisticView : RelativeLayout {
 
-    @BindView(R.id.text_name) @JvmField var mNameText: TextView? = null
-    @BindView(R.id.progress_stat) @JvmField var mStatProgress: ProgressBar? = null
+    @BindView(R.id.pokemon_name) @JvmField var nameText: TextView? = null
+    @BindView(R.id.progress_stat) @JvmField var statProgress: ProgressBar? = null
 
     constructor(context: Context) : super(context) {
         init()
@@ -43,7 +43,7 @@ class StatisticView : RelativeLayout {
 
     @SuppressLint("SetTextI18n")
     fun setStat(statistic: Statistic) {
-        mNameText?.text = statistic.stat?.name?.substring(0, 1)?.toUpperCase() + statistic.stat?.name?.substring(1)
-        mStatProgress?.progress = statistic.baseStat
+        nameText?.text = statistic.stat?.name?.substring(0, 1)?.toUpperCase() + statistic.stat?.name?.substring(1)
+        statProgress?.progress = statistic.baseStat
     }
 }
