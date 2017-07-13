@@ -16,6 +16,12 @@ class MvpStarterApplication : MultiDexApplication() {
 
     internal var appComponent: AppComponent? = null
 
+    companion object {
+        operator fun get(context: Context): MvpStarterApplication {
+            return context.applicationContext as MvpStarterApplication
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -43,10 +49,4 @@ class MvpStarterApplication : MultiDexApplication() {
             this.appComponent = appComponent
         }
 
-    companion object {
-
-        operator fun get(context: Context): MvpStarterApplication {
-            return context.applicationContext as MvpStarterApplication
-        }
-    }
 }

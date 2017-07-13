@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
+import io.mvpstarter.sample.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,7 +25,7 @@ import javax.inject.Singleton
 @Module
 class NetworkModule(private val context: Context) {
 
-    protected fun getBaseUrl() = "http://pokeapi.co/api/v2/"
+    protected fun getBaseUrl() = BuildConfig.POKEAPI_API_URL
 
     @Provides
     @Singleton
@@ -44,9 +45,11 @@ class NetworkModule(private val context: Context) {
                                      chuckInterceptor: ChuckInterceptor,
                                      stethoInterceptor: StethoInterceptor): OkHttpClient {
         val httpClientBuilder = OkHttpClient.Builder()
-        httpClientBuilder.addInterceptor(httpLoggingInterceptor)
-        httpClientBuilder.addInterceptor(chuckInterceptor)
-        httpClientBuilder.addNetworkInterceptor(stethoInterceptor)
+        if (BuildConfig.DEBUG) {
+            httpClientBuilder.addInterceptor(httpLoggingInterceptor)
+            httpClientBuilder.addInterceptor(chuckInterceptor)
+            httpClientBuilder.addNetworkInterceptor(stethoInterceptor)
+        }
         return httpClientBuilder.build()
 
     }
