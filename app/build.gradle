@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.ben-manes.versions'
 //apply plugin: 'io.fabric'
 
 android {
@@ -102,7 +103,7 @@ dependencies {
     }
 
     //RxPermission for easy runtime permission management
-    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
     implementation "com.jakewharton:butterknife:$versions.butterKnife"
     implementation "com.jakewharton.timber:timber:$versions.timber"
     implementation "com.facebook.stetho:stetho-okhttp3:$versions.stethOkhttp"
@@ -110,10 +111,10 @@ dependencies {
     debugImplementation 'com.readystatesoftware.chuck:library:1.0.4'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.0.4'
 
-    debugImplementation('com.github.ajitsing:sherlock:1.0.2@aar') {
+    debugImplementation('com.github.ajitsing:sherlock:1.0.3@aar') {
         transitive = true
     }
-    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.2@aar')
+    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.3@aar')
 
     implementation 'com.tspoon.traceur:traceur:1.0.1'
 
