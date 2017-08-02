@@ -92,44 +92,32 @@ apply from: 'dependencies.gradle'
 
 dependencies {
 
-    implementation supportLibs
-    implementation networkLibs
-    implementation rxJavaLibs
-    implementation googlePlayLibs
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation('com.github.bumptech.glide:okhttp3-integration:1.4.0') {
+    implementation supportLibs
+    implementation googlePlayLibs
+    implementation networkLibs
+    implementation rxJavaLibs
+    implementation otherLibs
+
+    debugImplementation debugLibs
+    releaseImplementation releaseLibs
+
+    implementation(glideOkhttp) {
         exclude group: 'glide-parent'
     }
 
-    //RxPermission for easy runtime permission management
-    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
-    implementation "com.jakewharton:butterknife:$versions.butterKnife"
-    implementation "com.jakewharton.timber:timber:$versions.timber"
-    implementation "com.facebook.stetho:stetho-okhttp3:$versions.stethOkhttp"
-
-    debugImplementation 'com.readystatesoftware.chuck:library:1.0.4'
-    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.0.4'
-
-    debugImplementation('com.github.ajitsing:sherlock:1.0.3@aar') {
+    debugImplementation(sherlock) {
         transitive = true
     }
-    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.3@aar')
 
-    implementation 'com.tspoon.traceur:traceur:1.0.1'
-
-    implementation "com.google.dagger:dagger:$versions.dagger"
-    compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
-
-    debugImplementation leakCannary
-    releaseImplementation leakCannary
-    testImplementation leakCannary
-
-    kapt "com.jakewharton:butterknife-compiler:$versions.butterKnife"
-    kapt daggerCompiler
+    // APT dependencies
+    kapt annotationProcessorLibs
     kaptTest daggerCompiler
     kaptAndroidTest daggerCompiler
+
+    testImplementation unitTestLibs
+    androidTestImplementation androidTestsLibs
 
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
