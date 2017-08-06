@@ -2,10 +2,9 @@ package io.mvpstarter.sample.injection.module
 
 import android.content.Context
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.readystatesoftware.chuck.ChuckInterceptor
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.mvpstarter.sample.BuildConfig
@@ -13,7 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
 import javax.inject.Singleton
 
@@ -29,11 +28,11 @@ class NetworkModule(private val context: Context) {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
+    internal fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(getBaseUrl())
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
@@ -74,13 +73,15 @@ class NetworkModule(private val context: Context) {
         return StethoInterceptor()
     }
 
+
     @Provides
     @Singleton
-    internal fun provideGson(): Gson {
-        return GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create()
+    internal fun provideMoshi(): Moshi {
+        return Moshi
+                .Builder()
+                .add(KotlinJsonAdapterFactory())
+                .build()
+
     }
 
 }
