@@ -1,9 +1,9 @@
 package io.mvpstarter.sample.data.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 class Statistic {
     var stat: NamedResource? = null
-    @SerializedName("base_stat")
+    @Json(name="base_stat")
     var baseStat: Int = 0
 }

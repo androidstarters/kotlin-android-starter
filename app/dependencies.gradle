@@ -2,6 +2,7 @@ ext {
     versions = [
             support         : "26.0.0",
             firebase        : '11.0.4',
+            moshi           : "1.5.0",
             okHttp          : "3.8.1",
             retrofit        : '2.3.0',
             dagger          : '2.11',
@@ -54,8 +55,12 @@ ext {
     retrofit = [
             retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
             rxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-            gsonConverter: "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            moshiConverter: "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
             sqlbrite     : "com.squareup.sqlbrite:sqlbrite:$versions.sqlbrite"
+    ]
+
+    moshi = [
+            moshi: "com.squareup.moshi:moshi-kotlin:$versions.moshi"
     ]
 
     okHttp = [
@@ -120,7 +125,7 @@ ext {
 
     googlePlayLibs = googlePlay.values()
     supportLibs = supportDeps.values()
-    networkLibs = retrofit.values() + okHttp.values()
+    networkLibs = retrofit.values() + okHttp.values() + moshi.values()
     rxJavaLibs = rxJava.values()
     otherLibs = [butterKnife, timber, dagger, glide]
 
