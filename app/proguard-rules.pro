@@ -7,13 +7,17 @@
 ####--------Okio----------####
 -dontwarn okio.**
 
-####--------Gson----------####
--keepattributes Signature
--keepattributes *Annotation*
--keep class sun.misc.Unsafe { *; }
--keep class * implements com.google.gson.TypeAdapterFactory
--keep class * implements com.google.gson.JsonSerializer
--keep class * implements com.google.gson.JsonDeserializer
+####--------Moshi---------####
+-dontwarn okio.**
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
+-keepclasseswithmembers class * {
+    @com.squareup.moshi.* <methods>;
+}
+-keep @com.squareup.moshi.JsonQualifier interface *
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
 
 ####-----Model classes---####
 -keep class io.mvpstarter.sample.data.model.** { *; }
