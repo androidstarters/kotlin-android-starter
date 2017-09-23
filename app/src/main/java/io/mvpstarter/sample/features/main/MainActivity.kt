@@ -36,7 +36,6 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
         mainPresenter.attachView(this)
 
         setSupportActionBar(toolbar)
-w
         swipeRefreshLayout?.apply {
             setProgressBackgroundColorSchemeResource(R.color.primary)
             setColorSchemeResources(R.color.white)
