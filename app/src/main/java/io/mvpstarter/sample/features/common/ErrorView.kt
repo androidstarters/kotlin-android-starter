@@ -41,9 +41,7 @@ class ErrorView : LinearLayout {
 
     @OnClick(R.id.button_reload)
     fun onReloadButtonClick() {
-        if (errorListener != null) {
-            errorListener?.onReloadData()
-        }
+        errorListener?.let { errorListener?.onReloadData() }
     }
 
     fun setErrorListener(errorListener: ErrorListener) {

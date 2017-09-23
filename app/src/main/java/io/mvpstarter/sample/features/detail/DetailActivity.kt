@@ -55,7 +55,7 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        title = pokemonName?.substring(0, 1)?.toUpperCase() + pokemonName?.substring(1)
+        title = "${pokemonName?.substring(0, 1)?.toUpperCase()}${pokemonName?.substring(1)}"
 
         errorView?.setErrorListener(this)
 

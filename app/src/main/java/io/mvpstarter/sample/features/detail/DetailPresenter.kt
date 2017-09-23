@@ -24,14 +24,18 @@ constructor(private val dataManager: DataManager) : BasePresenter<DetailMvpView>
                     // It should be always checked if MvpView (Fragment or Activity) is attached.
                     // Calling showProgress() on a not-attached fragment will throw a NPE
                     // It is possible to ask isAdded() in the fragment, but it's better to ask in the presenter
-                    mvpView?.showProgress(false)
-                    mvpView?.showPokemon(pokemon)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showPokemon(pokemon)
+                    }
                     for (statistic in pokemon.stats) {
                         mvpView?.showStat(statistic)
                     }
                 }) { throwable ->
-                    mvpView?.showProgress(false)
-                    mvpView?.showError(throwable)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showError(throwable)
+                    }
                 }
     }
 }

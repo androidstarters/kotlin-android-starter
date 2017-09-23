@@ -36,14 +36,18 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
         mainPresenter.attachView(this)
 
         setSupportActionBar(toolbar)
-
-        swipeRefreshLayout?.setProgressBackgroundColorSchemeResource(R.color.primary)
-        swipeRefreshLayout?.setColorSchemeResources(R.color.white)
-        swipeRefreshLayout?.setOnRefreshListener { mainPresenter.getPokemon(POKEMON_COUNT) }
+w
+        swipeRefreshLayout?.apply {
+            setProgressBackgroundColorSchemeResource(R.color.primary)
+            setColorSchemeResources(R.color.white)
+            setOnRefreshListener { mainPresenter.getPokemon(POKEMON_COUNT) }
+        }
 
         pokemonAdapter.setClickListener(this)
-        pokemonRecycler?.layoutManager = LinearLayoutManager(this)
-        pokemonRecycler?.adapter = pokemonAdapter
+        pokemonRecycler?.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = pokemonAdapter
+        }
 
         errorView?.setErrorListener(this)
 
@@ -59,8 +63,10 @@ class MainActivity : BaseActivity(), MainMvpView, PokemonAdapter.ClickListener, 
     }
 
     override fun showPokemon(pokemon: List<String>) {
-        pokemonAdapter.setPokemon(pokemon)
-        pokemonAdapter.notifyDataSetChanged()
+        pokemonAdapter.apply {
+            setPokemon(pokemon)
+            notifyDataSetChanged()
+        }
 
         pokemonRecycler?.visibility = View.VISIBLE
         swipeRefreshLayout?.visibility = View.VISIBLE

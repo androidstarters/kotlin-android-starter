@@ -25,7 +25,7 @@ open class BasePresenter<T : MvpView> : Presenter<T> {
         }
     }
 
-    val isViewAttached: Boolean
+    private val isViewAttached: Boolean
         get() = mvpView != null
 
     fun checkViewAttached() {
