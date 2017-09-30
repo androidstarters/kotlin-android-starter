@@ -21,5 +21,4 @@ constructor(private val pokemonApi: PokemonApi) {
     fun getPokemon(name: String): Single<Pokemon> {
         return pokemonApi.getPokemon(name)
     }
-
 }

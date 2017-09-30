@@ -1,6 +1,7 @@
 package io.mvpstarter.sample.features.base
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.util.LongSparseArray
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
@@ -35,7 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout)
+        setContentView(layoutId())
         ButterKnife.bind(this)
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
@@ -55,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
         activityComponent?.inject(this)
     }
 
-    abstract val layout: Int
+    @LayoutRes abstract fun layoutId(): Int
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -70,17 +71,13 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        android.R.id.home -> {
+            finish()
+            true
         }
+        else -> super.onOptionsItemSelected(item)
     }
 
-    fun activityComponent(): ActivityComponent {
-        return activityComponent as ActivityComponent
-    }
+    fun activityComponent() = activityComponent as ActivityComponent
 }

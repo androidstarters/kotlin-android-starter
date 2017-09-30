@@ -22,9 +22,7 @@ class MapsSampleActivity : BaseActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override val layout: Int
-        get() = R.layout.activity_maps_sample
-
+    override fun layoutId() = R.layout.activity_maps_sample
 
     /**
      * Manipulates the map once available.

@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/detail_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -19,13 +19,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/layout_pokemon"
+        android:id="@+id/layoutPokemon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ImageView
-            android:id="@+id/image_pokemon"
+            android:id="@+id/imagePokemon"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentTop="true"
@@ -33,10 +33,10 @@
             android:layout_margin="16dp" />
 
         <LinearLayout
-            android:id="@+id/layout_stats"
+            android:id="@+id/layoutStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image_pokemon"
+            android:layout_below="@id/imagePokemon"
             android:orientation="vertical"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
@@ -45,7 +45,7 @@
     </RelativeLayout>
 
     <io.mvpstarter.sample.features.common.ErrorView
-        android:id="@+id/view_error"
+        android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:visibility="gone" />

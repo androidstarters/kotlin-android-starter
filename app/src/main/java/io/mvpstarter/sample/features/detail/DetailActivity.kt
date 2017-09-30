@@ -3,32 +3,23 @@ package io.mvpstarter.sample.features.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import butterknife.BindView
 import io.mvpstarter.sample.R
 import io.mvpstarter.sample.data.model.Pokemon
 import io.mvpstarter.sample.data.model.Statistic
 import io.mvpstarter.sample.features.base.BaseActivity
 import io.mvpstarter.sample.features.common.ErrorView
 import io.mvpstarter.sample.features.detail.widget.StatisticView
+import io.mvpstarter.sample.util.gone
 import io.mvpstarter.sample.util.loadImageFromUrl
+import io.mvpstarter.sample.util.visible
+import kotlinx.android.synthetic.main.activity_detail.*
 import timber.log.Timber
 import javax.inject.Inject
 
 class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
 
     @Inject lateinit var detailPresenter: DetailPresenter
-
-    @BindView(R.id.view_error) @JvmField var errorView: ErrorView? = null
-    @BindView(R.id.image_pokemon) @JvmField var pokemonImage: ImageView? = null
-    @BindView(R.id.progress) @JvmField var progressBar: ProgressBar? = null
-    @BindView(R.id.toolbar) @JvmField var toolbar: Toolbar? = null
-    @BindView(R.id.layout_stats) @JvmField var statLayout: LinearLayout? = null
-    @BindView(R.id.layout_pokemon) @JvmField var pokemonLayout: View? = null
 
     private var pokemonName: String? = null
 
@@ -52,7 +43,7 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
             throw IllegalArgumentException("Detail Activity requires a pokemon name@")
         }
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(detail_toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
         title = "${pokemonName?.substring(0, 1)?.toUpperCase()}${pokemonName?.substring(1)}"
@@ -62,30 +53,29 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         detailPresenter.getPokemon(pokemonName as String)
     }
 
-    override val layout: Int
-        get() = R.layout.activity_detail
+    override fun layoutId() = R.layout.activity_detail
 
     override fun showPokemon(pokemon: Pokemon) {
         if (pokemon.sprites.frontDefault != null) {
-            pokemonImage?.loadImageFromUrl(pokemon.sprites.frontDefault as String)
+            imagePokemon?.loadImageFromUrl(pokemon.sprites.frontDefault as String)
         }
-        pokemonLayout?.visibility = View.VISIBLE
+        layoutPokemon?.visible()
     }
 
     override fun showStat(statistic: Statistic) {
         val statisticView = StatisticView(this)
         statisticView.setStat(statistic)
-        statLayout?.addView(statisticView)
+        layoutStats?.addView(statisticView)
     }
 
     override fun showProgress(show: Boolean) {
-        errorView?.visibility = View.GONE
-        progressBar?.visibility = if (show) View.VISIBLE else View.GONE
+        errorView?.gone()
+        progress?.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showError(error: Throwable) {
-        pokemonLayout?.visibility = View.GONE
-        errorView?.visibility = View.VISIBLE
+        layoutPokemon?.gone()
+        errorView?.visible()
         Timber.e(error, "There was a problem retrieving the pokemon...")
     }
 

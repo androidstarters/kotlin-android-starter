@@ -10,22 +10,21 @@ import javax.inject.Inject
 class MainPresenter @Inject
 constructor(private val dataManager: DataManager) : BasePresenter<MainMvpView>() {
 
-    override fun attachView(mvpView: MainMvpView) {
-        super.attachView(mvpView)
-    }
-
     fun getPokemon(limit: Int) {
         checkViewAttached()
         mvpView?.showProgress(true)
         dataManager.getPokemonList(limit)
                 .compose(SchedulerUtils.ioToMain<List<String>>())
                 .subscribe({ pokemons ->
-                    mvpView?.showProgress(false)
-                    mvpView?.showPokemon(pokemons)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showPokemon(pokemons)
+                    }
                 }) { throwable ->
-                    mvpView?.showProgress(false)
-                    mvpView?.showError(throwable)
+                    mvpView?.apply {
+                        showProgress(false)
+                        showError(throwable)
+                    }
                 }
     }
-
 }

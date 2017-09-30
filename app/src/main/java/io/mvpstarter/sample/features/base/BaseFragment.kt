@@ -1,6 +1,7 @@
 package io.mvpstarter.sample.features.base
 
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.support.v4.util.LongSparseArray
 import android.view.LayoutInflater
@@ -53,12 +54,12 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view: View? = inflater?.inflate(layout, container, false)
+        val view: View? = inflater?.inflate(layoutId(), container, false)
         ButterKnife.bind(this, view as View)
         return view
     }
 
-    abstract val layout: Int
+    @LayoutRes abstract fun layoutId(): Int
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
@@ -73,8 +74,5 @@ abstract class BaseFragment : Fragment() {
         super.onDestroy()
     }
 
-    fun fragmentComponent(): FragmentComponent {
-        return fragmentComponent as FragmentComponent
-    }
-
+    fun fragmentComponent() = fragmentComponent as FragmentComponent
 }

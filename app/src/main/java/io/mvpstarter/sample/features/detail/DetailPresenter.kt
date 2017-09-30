@@ -11,10 +11,6 @@ import javax.inject.Inject
 class DetailPresenter @Inject
 constructor(private val dataManager: DataManager) : BasePresenter<DetailMvpView>() {
 
-    override fun attachView(mvpView: DetailMvpView) {
-        super.attachView(mvpView)
-    }
-
     fun getPokemon(name: String) {
         checkViewAttached()
         mvpView?.showProgress(true)
@@ -27,9 +23,9 @@ constructor(private val dataManager: DataManager) : BasePresenter<DetailMvpView>
                     mvpView?.apply {
                         showProgress(false)
                         showPokemon(pokemon)
-                    }
-                    for (statistic in pokemon.stats) {
-                        mvpView?.showStat(statistic)
+                        for (statistic in pokemon.stats) {
+                            showStat(statistic)
+                        }
                     }
                 }) { throwable ->
                     mvpView?.apply {
