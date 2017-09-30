@@ -14,7 +14,7 @@ import timber.log.Timber
 
 class MvpStarterApplication : MultiDexApplication() {
 
-    internal var appComponent: AppComponent? = null
+    private var appComponent: AppComponent? = null
 
     companion object {
         operator fun get(context: Context): MvpStarterApplication {
