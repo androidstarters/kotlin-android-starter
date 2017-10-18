@@ -7,7 +7,7 @@ apply plugin: 'com.github.ben-manes.versions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    buildToolsVersion '26.0.2'
 
     dexOptions {
         maxProcessCount 4
@@ -114,7 +114,7 @@ dependencies {
     implementation(glideOkhttp) {
         exclude group: 'glide-parent'
     }
-
+    
     debugImplementation(sherlock) {
         transitive = true
     }

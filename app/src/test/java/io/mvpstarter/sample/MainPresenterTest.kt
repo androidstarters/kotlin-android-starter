@@ -1,5 +1,6 @@
 package io.mvpstarter.sample
 
+import com.nhaarman.mockito_kotlin.*
 import io.mvpstarter.sample.common.TestDataFactory
 import io.mvpstarter.sample.data.DataManager
 import io.mvpstarter.sample.features.main.MainMvpView
@@ -11,10 +12,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
 import org.mockito.ArgumentMatchers.anyBoolean
-import org.mockito.Mock
-import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -23,8 +21,13 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MainPresenterTest {
 
-    @Mock lateinit var mockMainMvpView: MainMvpView
-    @Mock lateinit var mockDataManager: DataManager
+    val pokemonList = TestDataFactory.makePokemonNamesList(10)
+
+    val mockMainMvpView: MainMvpView = mock()
+    val mockDataManager: DataManager = mock {
+        on { getPokemonList(10) } doReturn Single.just(pokemonList)
+        on { getPokemonList(5) } doReturn Single.error<List<String>>(RuntimeException())
+    }
     private var mainPresenter: MainPresenter? = null
 
     @JvmField
@@ -45,29 +48,23 @@ class MainPresenterTest {
     @Test
     @Throws(Exception::class)
     fun getPokemonReturnsPokemonNames() {
-        val pokemonList = TestDataFactory.makePokemonNamesList(10)
-        `when`(mockDataManager.getPokemonList(10))
-                .thenReturn(Single.just(pokemonList))
 
         mainPresenter?.getPokemon(10)
 
-        verify<MainMvpView>(mockMainMvpView, times(2)).showProgress(anyBoolean())
-        verify<MainMvpView>(mockMainMvpView).showPokemon(pokemonList)
-        verify<MainMvpView>(mockMainMvpView, never()).showError(RuntimeException())
+        verify(mockMainMvpView, times(2)).showProgress(anyBoolean())
+        verify(mockMainMvpView).showPokemon(pokemonList)
+        verify(mockMainMvpView, never()).showError(RuntimeException())
 
     }
 
     @Test
     @Throws(Exception::class)
     fun getPokemonReturnsError() {
-        `when`(mockDataManager.getPokemonList(10))
-                .thenReturn(Single.error<List<String>>(RuntimeException()))
 
-        mainPresenter?.getPokemon(10)
+        mainPresenter?.getPokemon(5)
 
-        verify<MainMvpView>(mockMainMvpView, times(2)).showProgress(anyBoolean())
-//        verify<MainMvpView>(mockMainMvpView).showError(RuntimeException())
-        verify<MainMvpView>(mockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList<String>())
+        verify(mockMainMvpView, times(2)).showProgress(anyBoolean())
+        verify(mockMainMvpView).showError(any())
+        verify(mockMainMvpView, never()).showPokemon(any())
     }
-
 }

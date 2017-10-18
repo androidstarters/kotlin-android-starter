@@ -1,5 +1,7 @@
 package io.mvpstarter.sample
 
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.mock
 import io.mvpstarter.sample.common.TestDataFactory
 import io.mvpstarter.sample.data.DataManager
 import io.mvpstarter.sample.data.model.PokemonListResponse
@@ -12,15 +14,21 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.ArgumentMatchers.anyString
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class DataManagerTest {
 
     @Rule @JvmField val overrideSchedulersRule = RxSchedulersOverrideRule()
-    @Mock lateinit var mockPokemonApi: PokemonApi
+    val namedResourceList = TestDataFactory.makeNamedResourceList(5)
+    val pokemonListResponse = PokemonListResponse(namedResourceList)
+    val name = "charmander"
+    val pokemon = TestDataFactory.makePokemon(name)
+
+    val mockPokemonApi: PokemonApi = mock {
+        on { getPokemonList(anyInt()) } doReturn Single.just(pokemonListResponse)
+        on { getPokemon(anyString()) } doReturn Single.just(pokemon)
+    }
 
     private var dataManager: DataManager? = null
 
@@ -31,12 +39,6 @@ class DataManagerTest {
 
     @Test
     fun getPokemonListCompletesAndEmitsPokemonList() {
-        val namedResourceList = TestDataFactory.makeNamedResourceList(5)
-        val pokemonListResponse = PokemonListResponse(namedResourceList)
-
-        `when`(mockPokemonApi.getPokemonList(anyInt()))
-                .thenReturn(Single.just(pokemonListResponse))
-
         dataManager?.getPokemonList(10)
                 ?.test()
                 ?.assertComplete()
@@ -45,11 +47,6 @@ class DataManagerTest {
 
     @Test
     fun getPokemonCompletesAndEmitsPokemon() {
-        val name = "charmander"
-        val pokemon = TestDataFactory.makePokemon(name)
-        `when`(mockPokemonApi.getPokemon(anyString()))
-                .thenReturn(Single.just(pokemon))
-
         dataManager?.getPokemon(name)
                 ?.test()
                 ?.assertComplete()
