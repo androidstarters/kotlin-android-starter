@@ -8,7 +8,6 @@ import io.mvpstarter.sample.data.model.PokemonListResponse
 import io.mvpstarter.sample.data.remote.PokemonApi
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule
 import io.reactivex.Single
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,26 +29,21 @@ class DataManagerTest {
         on { getPokemon(anyString()) } doReturn Single.just(pokemon)
     }
 
-    private var dataManager: DataManager? = null
-
-    @Before
-    fun setUp() {
-        dataManager = DataManager(mockPokemonApi)
-    }
+    private var dataManager = DataManager(mockPokemonApi)
 
     @Test
     fun getPokemonListCompletesAndEmitsPokemonList() {
-        dataManager?.getPokemonList(10)
-                ?.test()
-                ?.assertComplete()
-                ?.assertValue(TestDataFactory.makePokemonNameList(namedResourceList))
+        dataManager.getPokemonList(10)
+                .test()
+                .assertComplete()
+                .assertValue(TestDataFactory.makePokemonNameList(namedResourceList))
     }
 
     @Test
     fun getPokemonCompletesAndEmitsPokemon() {
-        dataManager?.getPokemon(name)
-                ?.test()
-                ?.assertComplete()
-                ?.assertValue(pokemon)
+        dataManager.getPokemon(name)
+                .test()
+                .assertComplete()
+                .assertValue(pokemon)
     }
 }

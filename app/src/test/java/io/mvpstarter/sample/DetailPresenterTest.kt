@@ -65,5 +65,4 @@ class DetailPresenterTest {
         verify(mockDetailMvpView).showError(any())
         verify(mockDetailMvpView, never()).showPokemon(any())
     }
-
 }
