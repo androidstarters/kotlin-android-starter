@@ -1,5 +1,6 @@
 package io.mvpstarter.sample.features.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
@@ -42,7 +43,7 @@ abstract class BaseFragment : Fragment() {
         if (componentsArray.get(fragmentId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", fragmentId)
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .appComponent(MvpStarterApplication[activity].component)
+                    .appComponent(MvpStarterApplication[activity as Context].component)
                     .build()
             componentsArray.put(fragmentId, configPersistentComponent)
         } else {
@@ -52,22 +53,21 @@ abstract class BaseFragment : Fragment() {
         fragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view: View? = inflater?.inflate(layoutId(), container, false)
-        ButterKnife.bind(this, view as View)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view: View = inflater.inflate(layoutId(), container, false)
+        ButterKnife.bind(this, view)
         return view
     }
 
     @LayoutRes abstract fun layoutId(): Int
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putLong(KEY_FRAGMENT_ID, fragmentId)
+        outState.putLong(KEY_FRAGMENT_ID, fragmentId)
     }
 
     override fun onDestroy() {
-        if (!activity.isChangingConfigurations) {
+        if (!activity!!.isChangingConfigurations) {
             Timber.i("Clearing ConfigPersistentComponent id=%d", fragmentId)
             componentsArray.remove(fragmentId)
         }

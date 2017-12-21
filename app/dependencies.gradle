@@ -1,21 +1,21 @@
 ext {
     versions = [
-            support         : "26.1.0",
-            firebase        : '11.4.2',
+            support         : "27.0.2",
+            firebase        : '11.8.0',
             moshi           : "1.5.0",
             okHttp          : "3.9.0",
             retrofit        : '2.3.0',
             dagger          : '2.12',
             butterKnife     : '8.8.1',
-            rxKotlin        : '2.1.0',
+            rxKotlin        : '2.2.0',
             rxAndroid       : '2.0.1',
             rxPermissions   : '0.9.4@aar',
             sqlbrite        : '1.1.2',
             traceur         : '1.0.1',
             stetho          : '1.5.0',
-            timber          : '4.5.1',
-            glide           : '4.2.0',
-            sherlock        : '1.0.3@aar',
+            timber          : '4.6.0',
+            glide           : '4.4.0',
+            sherlock        : '1.0.4@aar',
 
             espresso        : '3.0.1',
             testRunner      : '1.0.1',
@@ -23,7 +23,7 @@ ext {
             restMock        : '0.2.2',
             mockito         : '2.11.0',
             junit           : '4.12',
-            robolectric     : '3.4.2',
+            robolectric     : '3.6.1',
             assertj         : '1.2.0',
             powerMock       : '1.6.6',
             leakcanary      : '1.5.4',
@@ -125,6 +125,7 @@ ext {
     glide = "com.github.bumptech.glide:glide:$versions.glide"
     glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
     glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+    databindingCompiler = "com.android.databinding:compiler:3.0.1"
 
     googlePlayLibs = googlePlay.values()
     supportLibs = supportDeps.values()
@@ -134,7 +135,7 @@ ext {
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary
-    annotationProcessorLibs = [butterKnifeCompiler, daggerCompiler, glideCompiler]
+    annotationProcessorLibs = [butterKnifeCompiler, daggerCompiler, glideCompiler, databindingCompiler]
 
     unitTestLibs = unitTest.values() + leakCannary
     androidTestsLibs = androidTests.values() + supportLibs

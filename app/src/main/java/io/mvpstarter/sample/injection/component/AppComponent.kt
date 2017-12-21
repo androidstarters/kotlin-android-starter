@@ -10,7 +10,7 @@ import io.mvpstarter.sample.injection.module.AppModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class))
+@Component(modules = [AppModule::class])
 interface AppComponent {
 
     @ApplicationContext

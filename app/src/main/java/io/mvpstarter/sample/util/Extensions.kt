@@ -85,19 +85,19 @@ fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
  *  Extension method to provide simpler access to {@link ContextCompat#getColor(int)}
  *  from a [Fragment].
  */
-fun Fragment.getColorCompat(color: Int) = context.getColorCompat(color)
+fun Fragment.getColorCompat(color: Int) = context?.getColorCompat(color)
 
 /**
  * Extension method to provide simpler access to {@link ContextCompat#getDrawableCompat(int)}.
  */
-fun Context.getDrawableCompat(drawableResId: Int): Drawable = ContextCompat
+fun Context.getDrawableCompat(drawableResId: Int): Drawable? = ContextCompat
         .getDrawable(this, drawableResId)
 
 /**
  * Extension method to provide simpler access to {@link ContextCompat#getDrawableCompat(int)}
  * from a [Fragment].
  */
-fun Fragment.getDrawableCompat(drawableResId: Int) = context.getDrawableCompat(drawableResId)
+fun Fragment.getDrawableCompat(drawableResId: Int) = context?.getDrawableCompat(drawableResId)!!
 
 /**
  * Extension method to provide simpler access to {@link View#getResources()#getString(int)}.

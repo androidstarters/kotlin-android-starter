@@ -28,15 +28,13 @@ class NetworkModule(private val context: Context) {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(getBaseUrl())
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-
-    }
+    internal fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
+            Retrofit.Builder()
+                    .baseUrl(getBaseUrl())
+                    .client(okHttpClient)
+                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
 
     @Provides
     @Singleton
@@ -55,33 +53,23 @@ class NetworkModule(private val context: Context) {
 
     @Provides
     @Singleton
-    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor { message ->
-            Timber.d(message)
-        }.setLevel(HttpLoggingInterceptor.Level.BODY)
-    }
+    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+            HttpLoggingInterceptor { message ->
+                Timber.d(message)
+            }.setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton
-    internal fun provideChuckInterceptor(): ChuckInterceptor {
-        return ChuckInterceptor(context)
-    }
+    internal fun provideChuckInterceptor(): ChuckInterceptor = ChuckInterceptor(context)
 
     @Provides
     @Singleton
-    internal fun provideStetho(): StethoInterceptor {
-        return StethoInterceptor()
-    }
-
+    internal fun provideStetho(): StethoInterceptor = StethoInterceptor()
 
     @Provides
     @Singleton
-    internal fun provideMoshi(): Moshi {
-        return Moshi
-                .Builder()
-                .add(KotlinJsonAdapterFactory())
-                .build()
-
-    }
-
+    internal fun provideMoshi(): Moshi = Moshi
+            .Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
 }

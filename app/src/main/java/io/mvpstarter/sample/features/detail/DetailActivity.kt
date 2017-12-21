@@ -87,5 +87,4 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         super.onDestroy()
         detailPresenter.detachView()
     }
-
 }
