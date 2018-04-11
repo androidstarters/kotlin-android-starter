@@ -1,34 +1,34 @@
 ext {
     versions = [
-            support         : "27.0.2",
-            firebase        : '11.8.0',
+            support         : "27.1.0",
+            firebase        : '12.0.1',
             moshi           : "1.5.0",
-            okHttp          : "3.9.0",
-            retrofit        : '2.3.0',
-            dagger          : '2.12',
+            okHttp          : "3.10.0",
+            retrofit        : '2.4.0',
+            dagger          : '2.15',
             butterKnife     : '8.8.1',
             rxKotlin        : '2.2.0',
-            rxAndroid       : '2.0.1',
+            rxAndroid       : '2.0.2',
             rxPermissions   : '0.9.4@aar',
             sqlbrite        : '1.1.2',
             traceur         : '1.0.1',
             stetho          : '1.5.0',
-            timber          : '4.6.0',
-            glide           : '4.4.0',
+            timber          : '4.7.0',
+            glide           : '4.6.1',
             sherlock        : '1.0.4@aar',
 
             espresso        : '3.0.1',
             testRunner      : '1.0.1',
             hamcrest        : '1.4-atlassian-1',
-            restMock        : '0.2.2',
-            mockito         : '2.11.0',
+            restMock        : '0.3.1',
+            mockito         : '2.18.0',
             junit           : '4.12',
-            robolectric     : '3.6.1',
+            robolectric     : '3.8',
             assertj         : '1.2.0',
             powerMock       : '1.6.6',
             leakcanary      : '1.5.4',
             stethOkhttp     : '1.5.0',
-            multiDex        : '1.0.2',
+            multiDex        : '1.0.3',
             mockitoKotlin   : '1.5.0'
     ]
 
@@ -125,7 +125,7 @@ ext {
     glide = "com.github.bumptech.glide:glide:$versions.glide"
     glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
     glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
-    databindingCompiler = "com.android.databinding:compiler:3.0.1"
+    databindingCompiler = "com.android.databinding:compiler:3.1.1"
 
     googlePlayLibs = googlePlay.values()
     supportLibs = supportDeps.values()
