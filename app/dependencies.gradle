@@ -1,35 +1,35 @@
 ext {
     versions = [
-            support         : "27.1.0",
-            firebase        : '15.0.0',
-            moshi           : "1.5.0",
-            okHttp          : "3.10.0",
-            retrofit        : '2.4.0',
-            dagger          : '2.15',
-            butterKnife     : '8.8.1',
-            rxKotlin        : '2.2.0',
-            rxAndroid       : '2.0.2',
+            support         : "28.0.0",
+            firebase        : '16.0.6',
+            moshi           : "1.8.0",
+            okHttp          : "3.12.0",
+            retrofit        : '2.5.0',
+            dagger          : '2.20',
+            butterKnife     : '9.0.0-rc3',
+            rxKotlin        : '2.3.0',
+            rxAndroid       : '2.1.0',
             rxPermissions   : '0.9.4@aar',
             sqlbrite        : '1.1.2',
             traceur         : '1.0.1',
             stetho          : '1.5.0',
-            timber          : '4.7.0',
-            glide           : '4.7.1',
+            timber          : '4.7.1',
+            glide           : '4.8.0',
             sherlock        : '1.0.4@aar',
 
-            espresso        : '3.0.1',
-            testRunner      : '1.0.1',
-            hamcrest        : '1.4-atlassian-1',
-            restMock        : '0.3.1',
-            mockito         : '2.18.3',
+            espresso        : '3.0.2',
+            testRunner      : '1.0.2',
+            hamcrest        : '2.1',
+            restMock        : '0.3.2',
+            mockito         : '2.23.4',
             junit           : '4.12',
-            robolectric     : '3.8',
+            robolectric     : '4.1',
             assertj         : '1.2.0',
             powerMock       : '1.6.6',
-            leakcanary      : '1.5.4',
+            leakcanary      : '1.6.2',
             stethOkhttp     : '1.5.0',
-            multiDex        : '1.0.3',
-            mockitoKotlin   : '1.5.0'
+            multiDex        : '2.0.1',
+            mockitoKotlin   : '1.6.0'
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
@@ -65,17 +65,19 @@ ext {
     ]
 
     okHttp = [
-            logger: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            logger: "com.squareup.okhttp3:logging-interceptor:3.12.1",
             okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
             stetho  : "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
     ]
 
     googlePlay = [
-            maps             : "com.google.android.gms:play-services-maps:$versions.firebase",
-            crash            : "com.google.firebase:firebase-crash:$versions.firebase",
+            maps             : "com.google.android.gms:play-services-maps:16.0.0",
+            crash            : "com.google.firebase:firebase-crash:16.2.1",
             firebaseCore     : "com.google.firebase:firebase-core:$versions.firebase",
-            firebaseMessaging: "com.google.firebase:firebase-messaging:$versions.firebase"
+            firebaseMessaging: "com.google.firebase:firebase-messaging:17.3.4"
     ]
+
+
     onlyDebug = [
             chuck   : "com.readystatesoftware.chuck:library:1.1.0"
     ]
@@ -88,7 +90,7 @@ ext {
     unitTest = [
             harcrestCore        : "org.hamcrest:hamcrest-core:$versions.hamcrest",
             harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
-            hamcrestIntegration : "org.hamcrest:hamcrest-integration:$versions.hamcrest",
+            hamcrestIntegration : "org.hamcrest:hamcrest-integration:1.4-atlassian-1",
             robolectric         : "org.robolectric:robolectric:$versions.robolectric",
             supportAnnotation   : "com.android.support:support-annotations:$versions.support",
             restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
@@ -112,7 +114,7 @@ ext {
             testRules           : "com.android.support.test:rules:$versions.testRunner"
     ] + mockito + restMock
 
-    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5.1"
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.6.2"
     timber = "com.jakewharton.timber:timber:$versions.timber"
     sherlock = "com.github.ajitsing:sherlock:$versions.sherlock"
 

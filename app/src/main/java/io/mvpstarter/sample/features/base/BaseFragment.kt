@@ -48,7 +48,7 @@ abstract class BaseFragment : Fragment() {
             componentsArray.put(fragmentId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId)
-            configPersistentComponent = componentsArray.get(fragmentId)
+            configPersistentComponent = componentsArray.get(fragmentId)!!
         }
         fragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
     }

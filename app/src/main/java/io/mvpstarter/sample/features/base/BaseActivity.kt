@@ -50,7 +50,7 @@ abstract class BaseActivity : AppCompatActivity() {
             componentsArray.put(activityId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", activityId)
-            configPersistentComponent = componentsArray.get(activityId)
+            configPersistentComponent = componentsArray.get(activityId)!!
         }
         activityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
         activityComponent?.inject(this)

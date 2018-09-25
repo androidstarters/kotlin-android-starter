@@ -7,6 +7,9 @@ import io.mvpstarter.sample.R
 import io.mvpstarter.sample.features.base.BaseActivity
 import io.mvpstarter.sample.features.common.ErrorView
 import io.mvpstarter.sample.features.detail.DetailActivity
+import io.mvpstarter.sample.util.gone
+import io.mvpstarter.sample.util.visible
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 import javax.inject.Inject
 

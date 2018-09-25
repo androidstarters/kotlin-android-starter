@@ -7,7 +7,7 @@ apply plugin: 'com.github.ben-manes.versions'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
 
     dexOptions {
         maxProcessCount 4
