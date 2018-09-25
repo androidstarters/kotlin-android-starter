@@ -3,7 +3,7 @@ package io.mvpstarter.sample.runner
 import io.mvpstarter.sample.util.RxIdlingExecutionHook
 import io.mvpstarter.sample.util.RxIdlingResource
 import android.os.Bundle
-import android.support.test.espresso.Espresso
+import androidx.test.espresso.Espresso
 import rx.plugins.RxJavaPlugins
 
 /**

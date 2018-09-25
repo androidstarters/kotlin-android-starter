@@ -1,7 +1,7 @@
 package io.mvpstarter.sample
 
 import android.content.Context
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.facebook.stetho.Stetho
 import com.singhajit.sherlock.core.Sherlock
 import com.squareup.leakcanary.LeakCanary

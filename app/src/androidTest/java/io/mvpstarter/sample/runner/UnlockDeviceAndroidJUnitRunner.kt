@@ -7,7 +7,7 @@ import android.content.Context.KEYGUARD_SERVICE
 import android.content.Context.POWER_SERVICE
 import android.os.PowerManager
 import android.os.PowerManager.*
-import android.support.test.runner.AndroidJUnitRunner
+import androidx.test.runner.AndroidJUnitRunner
 
 open class UnlockDeviceAndroidJUnitRunner : AndroidJUnitRunner() {
 
