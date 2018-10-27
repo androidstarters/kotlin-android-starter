@@ -14,7 +14,7 @@ object TestDataFactory {
 
     private val random = Random()
 
-    fun randomUuid(): String {
+    private fun randomUuid(): String {
         return UUID.randomUUID().toString()
     }
 
@@ -23,42 +23,39 @@ object TestDataFactory {
     }
 
     fun makePokemonNamesList(count: Int): List<String> {
-        val pokemonList = (0..count - 1).mapTo(ArrayList<String>()) { makePokemon(it.toString()).name }
-        return pokemonList
+        return (0 until count).mapTo(ArrayList()) { makePokemon(it.toString()).name }
     }
 
     fun makePokemonNameList(pokemonList: List<NamedResource>): List<String> {
-        val names = pokemonList.mapTo(ArrayList<String>()) { it.name }
-        return names
+        return pokemonList.mapTo(ArrayList()) { it.name }
     }
 
-    fun makeStatistic(): Statistic {
+    private fun makeStatistic(): Statistic {
         val statistic = Statistic()
         statistic.baseStat = random.nextInt()
         statistic.stat = makeNamedResource(randomUuid())
         return statistic
     }
 
-    fun makeStatisticList(count: Int): List<Statistic> {
+    private fun makeStatisticList(count: Int): List<Statistic> {
         val statisticList = ArrayList<Statistic>()
-        for (i in 0..count - 1) {
+        for (i in 0 until count) {
             statisticList.add(makeStatistic())
         }
         return statisticList
     }
 
-    fun makeSprites(): Sprites {
+    private fun makeSprites(): Sprites {
         val sprites = Sprites()
         sprites.frontDefault = randomUuid()
         return sprites
     }
 
-    fun makeNamedResource(unique: String): NamedResource {
+    private fun makeNamedResource(unique: String): NamedResource {
         return NamedResource(randomUuid() + unique, randomUuid())
     }
 
     fun makeNamedResourceList(count: Int): List<NamedResource> {
-        val namedResourceList = (0..count - 1).map { makeNamedResource(it.toString()) }
-        return namedResourceList
+        return (0 until count).map { makeNamedResource(it.toString()) }
     }
 }

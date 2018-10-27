@@ -19,12 +19,12 @@ import org.mockito.junit.MockitoJUnitRunner
 class DataManagerTest {
 
     @Rule @JvmField val overrideSchedulersRule = RxSchedulersOverrideRule()
-    val namedResourceList = TestDataFactory.makeNamedResourceList(5)
-    val pokemonListResponse = PokemonListResponse(namedResourceList)
-    val name = "charmander"
-    val pokemon = TestDataFactory.makePokemon(name)
+    private val namedResourceList = TestDataFactory.makeNamedResourceList(5)
+    private val pokemonListResponse = PokemonListResponse(namedResourceList)
+    private val name = "charmander"
+    private val pokemon = TestDataFactory.makePokemon(name)
 
-    val mockPokemonApi: PokemonApi = mock {
+    private val mockPokemonApi: PokemonApi = mock {
         on { getPokemonList(anyInt()) } doReturn Single.just(pokemonListResponse)
         on { getPokemon(anyString()) } doReturn Single.just(pokemon)
     }

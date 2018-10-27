@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/detail_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
@@ -19,7 +18,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
-        android:id="@+id/layoutPokemon"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -33,7 +31,6 @@
             android:layout_margin="16dp" />
 
         <LinearLayout
-            android:id="@+id/layoutStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/imagePokemon"
@@ -45,13 +42,11 @@
     </RelativeLayout>
 
     <io.mvpstarter.sample.features.common.ErrorView
-        android:id="@+id/errorView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
     <ProgressBar
-        android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

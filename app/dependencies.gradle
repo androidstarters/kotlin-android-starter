@@ -1,12 +1,15 @@
 ext {
     versions = [
             support         : "28.0.0",
-            firebase        : '16.0.3',
+            maps            : '16.0.0',
+            crash           : '16.2.1',
+            firebaseCore    : '16.0.4',
+            firebaseMsg     : '17.3.4',
             moshi           : "1.5.0",
             okHttp          : "3.11.0",
             retrofit        : '2.4.0',
             dagger          : '2.17',
-            butterKnife     : '8.8.1',
+            butterKnife     : '9.0.0-rc1',
             rxKotlin        : '2.3.0',
             rxAndroid       : '2.1.0',
             rxPermissions   : '0.9.4@aar',
@@ -47,34 +50,34 @@ ext {
     ]
 
     rxJava = [
-            rxKotlin : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
-            rxAndroid: "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+            rxKotlin        : "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin",
+            rxAndroid       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
             traceur         : "com.tspoon.traceur:traceur:$versions.traceur",
             rxRermissions   : "com.tbruyelle.rxpermissions:rxpermissions:$versions.rxPermissions"
     ]
 
     retrofit = [
-            retrofit     : "com.squareup.retrofit2:retrofit:$versions.retrofit",
-            rxAdapter    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-            moshiConverter: "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
-            sqlbrite     : "com.squareup.sqlbrite:sqlbrite:$versions.sqlbrite"
+            retrofit        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+            rxAdapter       : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            moshiConverter  : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+            sqlbrite        : "com.squareup.sqlbrite:sqlbrite:$versions.sqlbrite"
     ]
 
     moshi = [
-            moshi: "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+            moshi   : "com.squareup.moshi:moshi-kotlin:$versions.moshi"
     ]
 
     okHttp = [
-            logger: "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+            logger  : "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
             okhttp  : "com.squareup.okhttp3:okhttp:$versions.okHttp",
             stetho  : "com.facebook.stetho:stetho-okhttp3:$versions.stetho"
     ]
 
     googlePlay = [
-            maps             : "com.google.android.gms:play-services-maps:$versions.firebase",
-            crash            : "com.google.firebase:firebase-crash:$versions.firebase",
-            firebaseCore     : "com.google.firebase:firebase-core:$versions.firebase",
-            firebaseMessaging: "com.google.firebase:firebase-messaging:$versions.firebase"
+            maps             : "com.google.android.gms:play-services-maps:$versions.maps",
+            crash            : "com.google.firebase:firebase-crash:$versions.crash",
+            firebaseCore     : "com.google.firebase:firebase-core:$versions.firebaseCore",
+            firebaseMsg      : "com.google.firebase:firebase-messaging:$versions.firebaseMsg"
     ]
     onlyDebug = [
             chuck   : "com.readystatesoftware.chuck:library:1.1.0"

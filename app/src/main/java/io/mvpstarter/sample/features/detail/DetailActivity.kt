@@ -19,12 +19,13 @@ import javax.inject.Inject
 
 class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
 
-    @Inject lateinit var detailPresenter: DetailPresenter
+    @Inject
+    lateinit var detailPresenter: DetailPresenter
 
     private var pokemonName: String? = null
 
     companion object {
-        val EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME"
+        const val EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME"
 
         fun getStartIntent(context: Context, pokemonName: String): Intent {
             val intent = Intent(context, DetailActivity::class.java)
@@ -48,7 +49,7 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         title = "${pokemonName?.substring(0, 1)?.toUpperCase()}${pokemonName?.substring(1)}"
 
-        errorView?.setErrorListener(this)
+        errorView.setErrorListener(this)
 
         detailPresenter.getPokemon(pokemonName as String)
     }
@@ -59,23 +60,23 @@ class DetailActivity : BaseActivity(), DetailMvpView, ErrorView.ErrorListener {
         if (pokemon.sprites.frontDefault != null) {
             imagePokemon?.loadImageFromUrl(pokemon.sprites.frontDefault as String)
         }
-        layoutPokemon?.visible()
+        layoutPokemon.visible()
     }
 
     override fun showStat(statistic: Statistic) {
         val statisticView = StatisticView(this)
         statisticView.setStat(statistic)
-        layoutStats?.addView(statisticView)
+        layoutStats.addView(statisticView)
     }
 
     override fun showProgress(show: Boolean) {
-        errorView?.gone()
-        progress?.visibility = if (show) View.VISIBLE else View.GONE
+        errorView.gone()
+        progress.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun showError(error: Throwable) {
-        layoutPokemon?.gone()
-        errorView?.visible()
+        layoutPokemon.gone()
+        errorView.visible()
         Timber.e(error, "There was a problem retrieving the pokemon...")
     }
 

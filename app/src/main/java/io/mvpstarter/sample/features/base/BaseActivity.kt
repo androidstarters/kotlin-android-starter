@@ -1,10 +1,10 @@
 package io.mvpstarter.sample.features.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
-import androidx.collection.LongSparseArray
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.collection.LongSparseArray
 import butterknife.ButterKnife
 import io.mvpstarter.sample.MvpStarterApplication
 import io.mvpstarter.sample.injection.component.ActivityComponent
@@ -29,7 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
     private var activityId = 0L
 
     companion object {
-        private val KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID"
+        private const val KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID"
         private val NEXT_ID = AtomicLong(0)
         private val componentsArray = LongSparseArray<ConfigPersistentComponent>()
     }
@@ -50,13 +50,14 @@ abstract class BaseActivity : AppCompatActivity() {
             componentsArray.put(activityId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", activityId)
-            configPersistentComponent = componentsArray.get(activityId)
+            configPersistentComponent = componentsArray.get(activityId) as ConfigPersistentComponent
         }
         activityComponent = configPersistentComponent.activityComponent(ActivityModule(this))
         activityComponent?.inject(this)
     }
 
-    @LayoutRes abstract fun layoutId(): Int
+    @LayoutRes
+    abstract fun layoutId(): Int
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

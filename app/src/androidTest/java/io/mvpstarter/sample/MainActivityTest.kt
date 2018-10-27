@@ -67,12 +67,12 @@ class MainActivityTest {
         ErrorTestUtil.checkErrorViewsDisplay()
     }
 
-    fun stubDataManagerGetPokemonList(single: Single<List<String>>) {
+    private fun stubDataManagerGetPokemonList(single: Single<List<String>>) {
         `when`(component.mockDataManager.getPokemonList(ArgumentMatchers.anyInt()))
                 .thenReturn(single)
     }
 
-    fun stubDataManagerGetPokemon(single: Single<Pokemon>) {
+    private fun stubDataManagerGetPokemon(single: Single<Pokemon>) {
         `when`(component.mockDataManager.getPokemon(ArgumentMatchers.anyString()))
                 .thenReturn(single)
     }

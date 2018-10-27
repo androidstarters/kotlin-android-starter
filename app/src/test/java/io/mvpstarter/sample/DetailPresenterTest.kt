@@ -26,10 +26,10 @@ class DetailPresenterTest {
     @JvmField
     @Rule
     val overrideSchedulersRule = RxSchedulersOverrideRule()
-    val pokemon = TestDataFactory.makePokemon("id")
+    private val pokemon = TestDataFactory.makePokemon("id")
 
-    val mockDetailMvpView: DetailMvpView = mock()
-    val mockDataManager: DataManager = mock {
+    private val mockDetailMvpView: DetailMvpView = mock()
+    private val mockDataManager: DataManager = mock {
         on { getPokemon(anyString()) } doReturn Single.just(pokemon)
         on { getPokemon("id") } doReturn Single.error<Pokemon>(RuntimeException())
     }

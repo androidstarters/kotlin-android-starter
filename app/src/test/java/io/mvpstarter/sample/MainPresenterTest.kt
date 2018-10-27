@@ -21,10 +21,10 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MainPresenterTest {
 
-    val pokemonList = TestDataFactory.makePokemonNamesList(10)
+    private val pokemonList = TestDataFactory.makePokemonNamesList(10)
 
-    val mockMainMvpView: MainMvpView = mock()
-    val mockDataManager: DataManager = mock {
+    private val mockMainMvpView: MainMvpView = mock()
+    private val mockDataManager: DataManager = mock {
         on { getPokemonList(10) } doReturn Single.just(pokemonList)
         on { getPokemonList(5) } doReturn Single.error<List<String>>(RuntimeException())
     }

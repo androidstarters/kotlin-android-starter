@@ -28,7 +28,7 @@ abstract class BaseFragment : Fragment() {
     private var fragmentId = 0L
 
     companion object {
-        private val KEY_FRAGMENT_ID = "KEY_FRAGMENT_ID"
+        private const val KEY_FRAGMENT_ID = "KEY_FRAGMENT_ID"
         private val componentsArray = LongSparseArray<ConfigPersistentComponent>()
         private val NEXT_ID = AtomicLong(0)
     }
@@ -48,7 +48,7 @@ abstract class BaseFragment : Fragment() {
             componentsArray.put(fragmentId, configPersistentComponent)
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId)
-            configPersistentComponent = componentsArray.get(fragmentId)
+            configPersistentComponent = componentsArray.get(fragmentId) as ConfigPersistentComponent
         }
         fragmentComponent = configPersistentComponent.fragmentComponent(FragmentModule(this))
     }

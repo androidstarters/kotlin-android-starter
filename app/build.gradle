@@ -7,7 +7,7 @@ apply plugin: 'com.github.ben-manes.versions'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '28.0.3'
 
     dexOptions {
         maxProcessCount 4
@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "io.mvpstarter.sample"
+        applicationId "io.mvpstarter.sampless"
         minSdkVersion 19
         targetSdkVersion 28
         testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
@@ -91,8 +91,8 @@ android {
 
 configurations.all {
     resolutionStrategy {
-        force 'com.squareup.okio:okio:1.11.0'
-        force "com.squareup.okhttp3:okhttp:3.5.0"
+        force 'com.squareup.okio:okio:1.16.0'
+        force "com.squareup.okhttp3:okhttp:3.11.0"
     }
 }
 
@@ -107,6 +107,7 @@ dependencies {
     implementation networkLibs
     implementation rxJavaLibs
     implementation otherLibs
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.1.0"
 
     debugImplementation debugLibs
     releaseImplementation releaseLibs
