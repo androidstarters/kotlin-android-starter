@@ -90,9 +90,11 @@ android {
 }
 
 configurations.all {
-    resolutionStrategy {
-        force 'com.squareup.okio:okio:1.11.0'
-        force "com.squareup.okhttp3:okhttp:3.5.0"
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'org.jetbrains.kotlin' && requested.name == 'kotlin-reflect') {
+            details.useVersion kotlin_version
+        }
     }
 }
 
