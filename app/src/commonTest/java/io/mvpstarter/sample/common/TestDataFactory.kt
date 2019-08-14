@@ -23,12 +23,12 @@ object TestDataFactory {
     }
 
     fun makePokemonNamesList(count: Int): List<String> {
-        val pokemonList = (0..count - 1).mapTo(ArrayList<String>()) { makePokemon(it.toString()).name }
+        val pokemonList = (0..count - 1).mapTo(ArrayList()) { makePokemon(it.toString()).name }
         return pokemonList
     }
 
     fun makePokemonNameList(pokemonList: List<NamedResource>): List<String> {
-        val names = pokemonList.mapTo(ArrayList<String>()) { it.name }
+        val names = pokemonList.mapTo(ArrayList()) { it.name }
         return names
     }
 
@@ -54,7 +54,9 @@ object TestDataFactory {
     }
 
     fun makeNamedResource(unique: String): NamedResource {
-        return NamedResource(randomUuid() + unique, randomUuid())
+        var name = randomUuid() + unique
+        name = String.format("%s%s", name.substring(0, 1).toUpperCase(), name.substring(1))
+        return NamedResource(name, randomUuid())
     }
 
     fun makeNamedResourceList(count: Int): List<NamedResource> {

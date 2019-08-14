@@ -1,35 +1,41 @@
 ext {
     versions = [
-            support         : "28.0.0",
-            firebase        : '16.0.6',
             moshi           : "1.8.0",
-            okHttp          : "3.12.0",
-            retrofit        : '2.5.0',
-            dagger          : '2.20',
-            butterKnife     : '10.0.0',
-            rxKotlin        : '2.3.0',
-            rxAndroid       : '2.1.0',
+            cardview        : "1.0.0",
+            appcompat       : "1.0.2",
+            material        : "1.0.0",
+            recyclerview    : "1.0.0",
+            annotation      : "1.1.0",
+            gridlayout      : "1.0.0",
+            firebase        : '17.0.0',
+            okHttp          : "3.12.1",
+            retrofit        : '2.6.1',
+            dagger          : '2.24',
+            butterKnife     : '10.1.0',
+            rxKotlin        : '2.4.0',
+            rxAndroid       : '2.1.1',
             rxPermissions   : '0.9.4@aar',
             sqlbrite        : '1.1.2',
             traceur         : '1.0.1',
-            stetho          : '1.5.0',
+            stetho          : '1.5.1',
             timber          : '4.7.1',
-            glide           : '4.8.0',
+            glide           : '4.9.0',
             sherlock        : '1.0.4@aar',
 
-            espresso        : '3.0.2',
-            testRunner      : '1.0.2',
+            espresso        : '3.1.1',
+            testRunner      : '1.2.0',
+            testExt         : '1.1.1',
             hamcrest        : '2.1',
             restMock        : '0.3.2',
-            mockito         : '2.23.4',
+            mockito         : '3.0.0',
             junit           : '4.12',
-            robolectric     : '4.1',
+            robolectric     : '4.3',
             assertj         : '1.2.0',
-            powerMock       : '1.6.6',
-            leakcanary      : '1.6.2',
+            leakcanary      : '1.6.3',
             stethOkhttp     : '1.5.0',
             multiDex        : '2.0.1',
-            mockitoKotlin   : '1.6.0'
+            mockitoKotlin   : '2.1.0',
+            databindingCompiler:'3.2.0-alpha11'
     ]
 
     mockito = [mockito: "org.mockito:mockito-core:$versions.mockito"]
@@ -37,13 +43,13 @@ ext {
     restMock = [restMock: "com.github.andrzejchm.RESTMock:android:$versions.restMock"]
 
     supportDeps = [
-            cardView         : "com.android.support:cardview-v7:$versions.support",
-            appcompatV7      : "com.android.support:appcompat-v7:$versions.support",
-            design           : "com.android.support:design:$versions.support",
-            recyclerView     : "com.android.support:recyclerview-v7:$versions.support",
-            supportAnnotation: "com.android.support:support-annotations:$versions.support",
-            gridLayout       : "com.android.support:gridlayout-v7:$versions.support",
-            multiDex         : "com.android.support:multidex:$versions.multiDex"
+            cardView         : "androidx.cardview:cardview:$versions.cardview",
+            appcompatV7      : "androidx.appcompat:appcompat:$versions.appcompat",
+            design           : "com.google.android.material:material:$versions.material",
+            recyclerView     : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+            supportAnnotation: "androidx.annotation:annotation:$versions.annotation",
+            gridLayout       : "androidx.gridlayout:gridlayout:$versions.gridlayout",
+            multiDex         : "androidx.multidex:multidex:$versions.multiDex"
     ]
 
     rxJava = [
@@ -92,29 +98,30 @@ ext {
             harmcrestLib        : "org.hamcrest:hamcrest-library:$versions.hamcrest",
             hamcrestIntegration : "org.hamcrest:hamcrest-integration:1.4-atlassian-1",
             robolectric         : "org.robolectric:robolectric:$versions.robolectric",
-            supportAnnotation   : "com.android.support:support-annotations:$versions.support",
+            supportAnnotation   : "androidx.annotation:annotation:$versions.annotation",
             restMock            : "com.github.andrzejchm.RESTMock:android:$versions.restMock",
             assertj             : "com.squareup.assertj:assertj-android:$versions.assertj",
             kotlinTest          : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
             kotlinJunit         : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
-            mockitoKotlin       : "com.nhaarman:mockito-kotlin:$versions.mockitoKotlin"
+            mockitoKotlin       : "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
 
     ] + junit + mockito + restMock
 
     androidTests = [
             mockitoAndroid      : "org.mockito:mockito-android:$versions.mockito",
-            espressoCore        : "com.android.support.test.espresso:espresso-core:$versions.espresso",
-            espressoContrib     : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
-            espressoIntents     : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-            espressoAcc         : "com.android.support.test.espresso:espresso-accessibility:$versions.espresso",
-            espressoIdle        : "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso",
-            espressoConcurrent  : "com.android.support.test.espresso.idling:idling-concurrent:$versions.espresso",
-            espressoNetIdle     : "com.android.support.test.espresso.idling:idling-net:$versions.espresso",
-            testRunner          : "com.android.support.test:runner:$versions.testRunner",
-            testRules           : "com.android.support.test:rules:$versions.testRunner"
+            espressoCore        : "androidx.test.espresso:espresso-core:$versions.espresso",
+            espressoContrib     : "androidx.test.espresso:espresso-contrib:$versions.espresso",
+            espressoIntents     : "androidx.test.espresso:espresso-intents:$versions.espresso",
+            espressoAcc         : "androidx.test.espresso:espresso-accessibility:$versions.espresso",
+            espressoIdle        : "androidx.test.espresso:espresso-idling-resource:$versions.espresso",
+            espressoConcurrent  : "androidx.test.espresso.idling:idling-concurrent:$versions.espresso",
+            espressoNetIdle     : "androidx.test.espresso.idling:idling-net:$versions.espresso",
+            testRunner          : "androidx.test:runner:$versions.testRunner",
+            testRules           : "androidx.test:runner:$versions.testRunner",
+            testExt             : "androidx.test.ext:junit:$versions.testExt"
     ] + mockito + restMock
 
-    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.6.2"
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
     timber = "com.jakewharton.timber:timber:$versions.timber"
     sherlock = "com.github.ajitsing:sherlock:$versions.sherlock"
 
@@ -127,7 +134,7 @@ ext {
     glide = "com.github.bumptech.glide:glide:$versions.glide"
     glideCompiler = "com.github.bumptech.glide:compiler:$versions.glide"
     glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
-    databindingCompiler = "com.android.databinding:compiler:3.1.1"
+    databindingCompiler = "androidx.databinding:compiler:$versions.databindingCompiler"
 
     googlePlayLibs = googlePlay.values()
     supportLibs = supportDeps.values()

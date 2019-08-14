@@ -128,9 +128,6 @@ dependencies {
 
     testImplementation unitTestLibs
     androidTestImplementation androidTestsLibs
-
-    testImplementation unitTestLibs
-    androidTestImplementation androidTestsLibs
 }
 
 // Log out test results to console
